@@ -19,6 +19,7 @@ public class Q11
         System.out.print("Enter the Number of Rows : ");
         int n=input.nextInt();
         int arr[][]=new int[n][n];
+        int sp=n-1;
         for(int i=0;i<n;i++)
         {
             for(int j=0;j<=i;j++)
@@ -30,8 +31,13 @@ public class Q11
         System.out.println("The Pascal Triangle is ");
         for(int i=0;i<n;i++)
         {
+        	for(int k=0;k<sp;k++) // loop for printing the spaces
+           	{
+               System.out.print(" ");
+           	}
+           	sp--;
             for(int j=0;j<=i;j++)
-                System.out.print(arr[i][j]+"\t");
+                System.out.print(arr[i][j]+" ");
 
             System.out.println();
         }
