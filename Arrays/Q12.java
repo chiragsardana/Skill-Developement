@@ -25,16 +25,61 @@ public class Q12
 	public static void main(String[] args) 
 	{
 		Scanner input=new Scanner(System.in);
-		float arr[][]=new float[4][5];//given that four sales person and five different products...
+		float arr[][]=new float[4][6];//given that four sales person and five different products...
 		String str="0";
+		for(int i=0;i<4;i++)
+		{
+			arr[i][0]=i+1;
+			for(int j=1;j<6;j++)
+			{
+				arr[i][j]=0;
+			}
+		}
 		while(!str.equals("-1"))
 		{
 			System.out.println("Enter the salesperson, product, and total sales : ");
 			System.out.print("(Enter -1 for the salesperon to end input) (Separated by spaces) : ");
 			str=input.nextLine();
+			if(str.equals("-1"))
+			{
+				break;
+			}
 			String temp[]=str.split(" ");
+			int val1=Integer.parseInt(temp[0]);//Sales Person
+			int val2 = Integer.parseInt(temp[1]);//Product Number
+			float val3 = Float.parseFloat(temp[2]);//Total Sales
+			if(val1>5 || val1<1 && val2<1 || val2>5)
+			{
+
+			}
+			else
+			{
+				arr[val1-1][val2]=val3;
+			}
+			// System.out.println(val1+" "+val2+" "+val3);  
 		}
-
-
+		System.out.println("Sales- \t\t\t\t\t Product");
+		System.out.println("Person \t\t1 \t\t2 \t\t3 \t\t4 \t\t5 \t\tTotals");
+		for(int i=0;i<4;i++)
+		{
+			float sum=(-1)*(i+1);
+			for(int j=0;j<6;j++)
+			{
+				sum+=arr[i][j];
+				System.out.print(arr[i][j]+"\t\t");
+			}
+			System.out.println(sum);
+		}
+		System.out.print("Total \t\t");
+		for(int i=1;i<6;i++)
+		{
+			float sum=0;
+			for(int j=0;j<4;j++)
+			{
+				sum+=arr[j][i];
+			}
+			System.out.print(sum+"\t\t");
+		}
+		System.out.println();
 	}
 }
