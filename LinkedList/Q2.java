@@ -55,11 +55,17 @@ public class Q2
 		System.out.println("The First and Last occurrence of an Element 2 is : "+my.FirstOccurence(2)+" and "+my.LastOccurence(2));
 
 		System.out.print("The List After Removing Dupplicates : ");
+		my.removeDuplicates();
 		my.print();
 
+		System.out.print("The List After Deleting AlterNate Nodes : ");
+		my.deleteAlternateNodes();
+		my.print();
 	}
+
 }
 /*
+javac -cp classes/ -d classes/ src/LinkedLists/Node.java
 javac -cp classes/ -d classes/ src/LinkedLists/MyLinkedList.java
 javac -cp classes/ -d classes/ src/LinkedLists/Q2.java
 java -cp classes/ LinkedLists.Q2

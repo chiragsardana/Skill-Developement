@@ -1,25 +1,36 @@
 package LinkedLists;
 public class MyLinkedList
 {
-	static Node head;
-	static class Node//createNewNode()
+	Node head;
+	void deleteAlternateNodes()//Delete alternate nodes of a Linked List 
 	{
-		int data;
-		Node next;
-		public Node(int data)
+		Node temp=head;
+		while(temp!=null && temp.next!=null)
 		{
-			this.data=data;
-			next=null;
+			temp.next=temp.next.next;
+			temp=temp.next;
 		}
 	}
 	void removeDuplicates()//Remove duplicates from an unsorted linked list 
 	{
+		Node temp=head;
 		
-	}
-	Node getMiddle(Node root)
-	{
-		
-
+		while(temp!=null && temp.next!=null)
+		{
+			Node temp2=temp;
+			while(temp2.next!=null)
+			{
+				if(temp2.next.data==temp.data)
+				{
+					temp2.next=temp2.next.next;
+				}
+				else
+				{
+					temp2=temp2.next;
+				}
+			}
+			temp=temp.next;
+		}
 	}
 	int FirstOccurence(int element)// Get the location of first and last occurrence of an element in a single LinkedList 
 	{
