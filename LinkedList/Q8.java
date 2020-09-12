@@ -31,6 +31,7 @@ public class Q8
 		outer :
 		while(true)
 		{
+			System.out.println("Select Your Option ");
 			System.out.println("1. Insertion");
 			System.out.println("2. Deletion");
 			System.out.println("3. Traversal");
@@ -40,15 +41,19 @@ public class Q8
 			{
 				case 1 :
 				InsertionMenu(size);
+				toEnterMenu();
 				break;
 				case 2 : 
 				DeletionMenu();
+				toEnterMenu();
 				break;
 				case 3 :
 				DoublyNode<Integer> Root=traversalForward(myDLL.head);
 				Root=traversalBackward(Root);
+				toEnterMenu();
 				break;
 				default :
+				System.out.println("The Final List : "+myDLL.print());
 				break outer;
 			}
 		}
@@ -148,6 +153,13 @@ public class Q8
 			}
 			System.out.println("The List is : "+myDLL.print());
 		}
+	}
+	public static void toEnterMenu()
+	{
+		input.nextLine();
+		System.out.println("Press Enter to Continue...");
+		String str=input.nextLine();
+		return;
 	}
 }
 // myDLL.insertAtBeginning(12);
