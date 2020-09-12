@@ -6,8 +6,10 @@ public class MyLinkedList<E>
 	//Checking for Empty
 	boolean isEmpty()
 	{
-		if(head==null)
+		if(head==null || tail==null)
+		{
 			return true;
+		}
 		return false;
 	}
 	//Insertion
@@ -54,7 +56,7 @@ public class MyLinkedList<E>
 			insertAtBeginning(data);
 			return;
 		}
-		while(temp!=null && count<Position-1)
+		while(temp!=null && count<Position-1)//1 2 3 4 5 
 		{
 			temp=temp.next;
 			count++;
@@ -70,6 +72,11 @@ public class MyLinkedList<E>
 			temp.next=newNode;
 			newNode.next=Next;
 		}
+		while(temp.next!=null)
+		{
+			temp=temp.next;
+		}
+		tail=temp;
 	}
 	String print()//Print
 	{
@@ -95,12 +102,22 @@ public class MyLinkedList<E>
 		else
 		{
 			head=head.next;
+			if(isEmpty())
+			{
+				tail=null;
+			}
 		}
 	}
 	void deleteAtEnd()//Deletion at End
 	{
 		if(isEmpty())
 		{
+			return;
+		}
+		if(head.next==null)
+		{
+			head=null;
+			tail=null;
 			return;
 		}
 		Node<E> temp=head;
@@ -136,7 +153,11 @@ public class MyLinkedList<E>
 			Node<E> Next=temp.next.next;
 			temp.next=Next;
 		}
-
+		while(temp.next!=null)
+		{
+			temp=temp.next;
+		}
+		tail=temp;
 	}
 	void swapFirstLast()
 	{
@@ -192,7 +213,7 @@ public class MyLinkedList<E>
 		{
 			Current=Current.next;
 		}
-		tail=Current;
+		tail=Previous;
 	}
 	int FirstOccurence(E Element)//Get the location of first and last occurrence of an element in a single LinkedList
 	{
