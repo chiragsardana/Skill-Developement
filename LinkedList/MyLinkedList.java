@@ -65,6 +65,7 @@ public class MyLinkedList<E>
 		{
 			temp.next=newNode;
 			tail=newNode;
+			return;
 		}
 		if(temp!=null)
 		{
