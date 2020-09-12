@@ -1,11 +1,17 @@
-package LinkedLists;
-public class Node//createNewNode()
+package LinkedList;
+public class Node<E>
 {
-	int data;
-	Node next;
-	public Node(int data)
+	Node<E> next;
+	E data;
+	Node(E data)
 	{
 		this.data=data;
 		next=null;
 	}
 }
+/*
+javac -cp classes/ -d classes/ src/LinkedList/Node.java
+
+
+java -cp classes/ LinkedList.Node
+*/

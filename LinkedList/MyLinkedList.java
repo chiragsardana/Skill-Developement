@@ -1,23 +1,240 @@
-package LinkedLists;
-public class MyLinkedList
+package LinkedList;
+public class MyLinkedList<E>
 {
-	Node head;
-	void deleteAlternateNodes()//Delete alternate nodes of a Linked List 
+	Node<E> head;
+	Node<E> tail;
+	//Checking for Empty
+	boolean isEmpty()
 	{
-		Node temp=head;
-		while(temp!=null && temp.next!=null)
+		if(head==null)
+			return true;
+		return false;
+	}
+	//Insertion
+	void insertAtBeginning(E data)//Insertion at Beginning
+	{
+		Node<E> newNode=new Node<>(data);
+		if(isEmpty())
 		{
-			temp.next=temp.next.next;
-			temp=temp.next;
+			head=newNode;
+			tail=newNode;
+		}
+		else
+		{
+			newNode.next=head;
+			head=newNode;
 		}
 	}
-	void removeDuplicates()//Remove duplicates from an unsorted linked list 
+	void insertAtEnd(E data)//Insertion at End
 	{
-		Node temp=head;
-		
+		Node<E> newNode=new Node<>(data);
+		if(isEmpty())
+		{
+			head=newNode;
+			tail=newNode;
+		}
+		else
+		{
+			Node<E> temp=head;
+			while(temp.next!=null)
+			{
+				temp=temp.next;
+			}
+			temp.next=newNode;
+			tail=newNode;
+		}
+	}
+	void insertAtSpecific(E data,int Position)//Insertion at Specific Position
+	{
+		Node<E> newNode=new Node<>(data);
+		int count=1;
+		Node<E> temp=head;
+		if(Position==1)
+		{
+			insertAtBeginning(data);
+			return;
+		}
+		while(temp!=null && count<Position-1)
+		{
+			temp=temp.next;
+			count++;
+		}
+		if(temp!=null && temp.next==null)
+		{
+			temp.next=newNode;
+			tail=newNode;
+		}
+		if(temp!=null)
+		{
+			Node<E> Next=temp.next;
+			temp.next=newNode;
+			newNode.next=Next;
+		}
+	}
+	String print()//Print
+	{
+		Node<E> temp =head;
+		String str="[";
+		while(temp!=null)
+		{
+			str+=temp.data;
+			temp=temp.next;
+			if(temp!=null)
+				str+=", ";
+		}
+		str+="]";
+		return str;
+	}
+	//Deletion
+	void deleteAtBeginning()//Deletion at Beginning
+	{
+		if(isEmpty())
+		{
+			return;
+		}
+		else
+		{
+			head=head.next;
+		}
+	}
+	void deleteAtEnd()//Deletion at End
+	{
+		if(isEmpty())
+		{
+			return;
+		}
+		Node<E> temp=head;
+		while(temp.next!=null && temp.next.next!=null)//1 2 3 4 5 6  
+		{
+			temp=temp.next;
+		}
+		tail=temp;
+		temp.next=null;
+	}
+	void deleteAtSpecific(int Position)//Deletion at Specific Position
+	{
+		if(isEmpty())
+		{
+			return;
+		}
+		if(Position==1)
+		{
+			deleteAtBeginning();
+			return;
+		}
+		int count=1;
+		Node<E> temp=head;
+		while(temp!=null && count<Position-1)
+		{
+			temp=temp.next;
+			count++;
+		}
+		if(temp!=null && temp.next==null)
+			return;
+		else
+		{
+			Node<E> Next=temp.next.next;
+			temp.next=Next;
+		}
+
+	}
+	void swapFirstLast()
+	{
+		Node<E> temp=head;
+		Node<E> First=head.next;
+		if(isEmpty())
+		{
+			return;
+		}
+		if(head.next!=null && head.next.next==null)
+		{
+			// Node<E> First=head.next;
+			head.next=null;
+			First.next=head;
+			head=First;
+			tail=head.next;
+		}
+		Node<E> Previous=null;
+		while(temp.next!=null)
+		{
+			Previous=temp;
+			temp=temp.next;// 1 2 3 4 5 
+		}
+		head.next=null;
+		Previous.next=head;
+		tail=head;
+		temp.next=First;
+		head=temp;
+
+	}
+	void pairWiseSwap()//Pairwise swap elements of a given linked list
+	{
+		if(head==null || head.next== null)
+			return;
+		Node<E> Current=head.next;
+		Node<E> Previous=head;
+		Node<E> Next=null;
+		head=Current;
+		while(true)
+		{
+			Next=Current.next;
+			Current.next=Previous;
+			if(Next ==null || Next.next==null)
+			{
+				Previous.next=Next;
+				break;
+			}
+			Previous.next=Next.next;
+			Previous=Next;
+			Current=Previous.next;
+		}
+		while(Current.next!=null)
+		{
+			Current=Current.next;
+		}
+		tail=Current;
+	}
+	int FirstOccurence(E Element)//Get the location of first and last occurrence of an element in a single LinkedList
+	{
+		int count=1;
+		Node<E> temp=head;
+		while(temp!=null)
+		{
+			if(temp.data==Element)
+			{
+				return count;
+			}
+			count++;
+			temp=temp.next;
+		}
+		return -1;
+	}
+	int LastOccurence(E Element)//Get the location of first and last occurrence of an element in a single LinkedList
+	{
+		int count=1;
+		int countElement=0;
+		boolean flag=false;
+		Node<E> temp=head;
+		while(temp!=null)
+		{
+			if(temp.data==Element)
+			{
+				flag=true;
+				countElement=count;
+			}
+			count++;
+			temp=temp.next;
+		}
+		if(flag)
+			return countElement;
+		return -1;
+	}
+	void removeDuplicates()//Remove duplicates from an unsorted linked list
+	{
+		Node<E> temp=head;
 		while(temp!=null && temp.next!=null)
 		{
-			Node temp2=temp;
+			Node<E> temp2=temp;
 			while(temp2.next!=null)
 			{
 				if(temp2.next.data==temp.data)
@@ -31,330 +248,40 @@ public class MyLinkedList
 			}
 			temp=temp.next;
 		}
-	}
-	int FirstOccurence(int element)// Get the location of first and last occurrence of an element in a single LinkedList 
-	{
-		Node temp=head;
-		int count=0;
-		boolean flag=false;
-		while(temp!=null)
-		{
-			count++;
-			if(temp.data==element)
-			{
-				flag=true;
-				break;
-			}
-			temp=temp.next;
-			
-		}
-		if(flag)
-			return count;
-		else
-			return -1;
-	}
-	int LastOccurence(int element)// Get the location of first and last occurrence of an element in a single LinkedList 
-	{
-		Node temp=head;
-		int count=0;
-		boolean flag=false;
-		int countElement=0;
-		while(temp!=null)
-		{
-			count++;
-			if(temp.data==element)
-			{
-				countElement=count;
-				flag=true;
-			}
-			temp=temp.next;
-			
-		}
-		if(flag)
-			return countElement;
-		else
-			return -1;
-	}
-	void PairWiseSwap()//Pairwise swap elements of a given linked list  
-	{
-		if(head==null || head.next==null)
-			return ;
-		Node Current=head.next;
-		Node Next=null;
-		Node Previous=head;
-		head=Current;
-		while(true)
-		{
-			Next=Current.next;
-			Current.next=Previous;
-			if(Next == null || Next.next==null)
-			{
-				Previous.next=Next;
-				break;
-			}
-			Previous.next=Next.next;
-			Previous=Next;
-			Current=Previous.next;
-		}
-	}
-	void SwappingFirstLast()//Swapping the first and last node of a singly linked list  
-	{
-		if(head==null || head.next==null)
-			return;
-		Node p=head;
-		Node Current=head;
-		Node Previous=null;
-		while(Current.next!=null)
-		{
-			Previous=Current;
-			Current=Current.next;
-		}
-		Current.next=head.next;
-		Previous.next=head;
-		head.next=null;
-		head=Current;
-	}
-	void addLast(int data)//addNodeAtEnd()
-	{
-		Node toAdd =new Node(data);
-
-		if(isEmpty())
-		{
-			head=toAdd;
-			return;
-		}
-		Node temp=head;
 		while(temp.next!=null)
 		{
 			temp=temp.next;
 		}
-		temp.next=toAdd;
+		tail=temp;
 	}
-	void add(int pos, int data)// add element at specified position...
+	void deleteAlternateNode()//Delete alternate nodes of a Linked List
 	{
-		if(pos>length())
+		Node<E> odd=head;
+		Node<E> even = head.next;
+		while(even!=null && even.next!=null)
 		{
-			return;
+			odd.next=even.next;
+			odd=odd.next;
+			even.next=odd.next;
+			even=even.next;
 		}
-		Node toAdd=new Node(data);
-		if(isEmpty())
-		{
-			head=toAdd;
-			return;
-		}
-		if(pos==1)
-		{
-			addFirst(data);
-			return;
-		}
-		if(pos==length())
-		{
-			addLast(data);
-			return;
-		}
-		int count=1;
-		Node temp=head;
-		while(count < pos-1 && temp != null)
-		{
-			temp=temp.next;
-			count++;
-		}	
-		if(temp.next!=null)
-		{
-			Node next=temp.next;
-			temp.next=toAdd;
-			toAdd.next=next;
-		}
-		else
-		{
-			addLast(data);
-		}
-	}
-	void addFirst(int data)//addNodeAtBegin()
-	{
-		Node toAdd=new Node(data);
-		if(isEmpty())
-		{
-			head=toAdd;
-			return;
-		}
-		toAdd.next=head;
-		head=toAdd;
-	}
-	boolean isEmpty()// empty
-	{
-		if(head==null)
-			return true;
-		return false;
-	}
-	void print()// print()
-	{
-		Node temp=head;
-		while(temp!=null)
-		{
-			System.out.print(temp.data+" ");
-			temp=temp.next;
-		}
-		System.out.println();
-	}
-	int length()// length()
-	{
-		Node temp=head;
-		int count=0;
-		while(temp!=null)
-		{
-			count++;
-			temp=temp.next;
-		}
-		// System.out.println(count);
-		return count;
-	}
-	boolean search(int data)//search an element
-	{
-		Node temp=head;
-		while(temp!=null)
-		{
-			if(temp.data==data)
-			{
-				return true;
-			}
-			temp=temp.next;
-		}
-		return false;
-	}
-	void deleteData(int data)//delete any Element
-	{
-		Node temp = head, prev = null; 
-
-        if (temp != null && temp.data == data) 
-        { 
-            head = temp.next; // Changed head 
-            return; 
-        } 
-        while (temp != null && temp.data != data) 
-        { 
-            prev = temp; 
-            temp = temp.next; 
-        }     
-        if (temp == null) 
-        	return; 
-        prev.next = temp.next;
-	}
-	void deleteFirst()
-	{
-		if(isEmpty())
-		{
-			return;
-		}
-		Node temp=head;
-		if(temp.next==null)
-		{
-			head=null;
-		}
-		else
-		{
-			head=head.next;
-		}
-	}
-	void deleteLast()
-	{
-		if(isEmpty())
-		{
-			return;
-		}
-		Node temp=head;
-		while(temp.next.next!=null)
-		{
-			temp=temp.next;
-		}
-		temp.next=null;
-	}
-	void delete(int pos)// Delete element at specified position...
-	{
-		if(pos>length())
-		{
-			return;
-		}
-		if(isEmpty())
-		{
-			return;
-		}
-		if(pos==1)
-		{
-			deleteFirst();
-			return;
-		}
-		if(pos==length())
-		{
-			deleteLast();
-			return;
-		}
-		int count=1;
-		Node temp=head;
-		while(count < pos-1 && temp.next.next != null)
-		{
-			temp=temp.next;
-			count++;
-		}	
-		temp.next=temp.next.next;
-	}
-	Node Nth(int num)
-	{
-		int len=length();
-		System.out.println(len);
-		if(num>len)
-		{
-			return null;
-		}
-		Node temp=head;
-		int count=1;
-		while(count<num &&  temp!=null )
-		{
-			temp=temp.next;
-			count++;
-		}
-		return temp;
-	}
-	int count(int data)
-	{
-		Node temp=head;
-		int count=0;
-		while(temp!=null)
-		{
-			if(temp.data==data)
-				count++;
-			temp=temp.next;
-		}
-		return count;
-	}
-	int max()
-	{
-		Node temp=head;
-		int max=head.data;
-		temp=temp.next;
-		while(temp!=null)
-		{
-			if(temp.data>max)
-			{
-				max=temp.data;
-			}
-			temp=temp.next;
-		}
-		return max;
-	}
-	int min()
-	{
-		Node temp=head;
-		int min=head.data;
-		temp=temp.next;
-		while(temp!=null)
-		{
-			if(temp.data<min)
-			{
-				min=temp.data;
-			}
-			temp=temp.next;
-		}
-		return min;
+		odd.next=null;
+		tail=odd;
 	}
 }
+/*
+javac -cp classes/ -d classes/ src/LinkedList/MyLinkedList.java
+*/
+
+
+/*
+Write a program to create a singly linked list of n nodes and perform:
+• Insertion
+o At the beginning
+o At the end
+o At a specific location
+• Deletion
+o At the beginning
+o At the end
+o At a specific location
+*/
