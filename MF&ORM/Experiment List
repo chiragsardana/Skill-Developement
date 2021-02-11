@@ -1,0 +1,16 @@
+1. Loosely coupled and tightly coupled
+2. Make a loosely coupled JAVA program for making DAO(Data Access Object) POJO Class.
+For this make a Interface which contains the CRUD
+(Create/Read/Update/Delete) methods . And then make three classes which implements the interface for CRUD with OracleDAO class, MySQLDAO class and the PosGresDAO class. Consume DAO in Loosley Coupled Manner.
+3. Implementation of singleton and prototype in beans
+4. Implementation of Injections: Constructor, Setter
+5. Injection in classes by Value, by Object refrence 
+6. Loan Origination System implementation
+7. If you dependency-inject a prototype-scoped bean into a singleton-scoped bean and vice-versa what will be happen.
+8. Collection Injection: LIST,SET,MAP
+9. Implementation of DB Factory
+10. Implement Loosely Coupled app using Annotation.
+11. Setup of a Maven Project in Spring framework
+12. Implementation of autowiring: ByType, ByName
+Create two classes A &B and do the DI of A with B using ByType. Create another class C and do its DI with A using ByName. Create one more class i.e. Caller class which is main class of the application
+13. Implementation Aspect-Oriented Programming in spring applications to enable modularization in transaction management.
