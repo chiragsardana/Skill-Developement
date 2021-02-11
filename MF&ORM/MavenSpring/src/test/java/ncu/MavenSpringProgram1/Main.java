@@ -10,8 +10,15 @@ public class Main {
 		ApplicationContext context = new ClassPathXmlApplicationContext("springProgram1.xml");
 		System.out.println("Bean Factory Called.");
 		
+		System.out.println("By Constructor");
 		Employee obj = (Employee)context.getBean("employee");
 		System.out.println(obj);
+		System.out.println("By Name");
+		Employee obj1 = (Employee)context.getBean("employee1");
+		System.out.println(obj1);
+		System.out.println("By Value");
+		Employee obj2 = (Employee)context.getBean("employee2");
+		System.out.println(obj2);
 		
 		((ClassPathXmlApplicationContext)context).close();
 	}
