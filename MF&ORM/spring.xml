@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-lazy-init = "false"  xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    
+    <!-- Program 2 -->
+	<!-- <bean id = "SlowProducer" class = "Program1.SlowProducer"> </bean>
+    
+    <bean id="myBasketBallCoach"
+ 		class="Program2.BasetBall">
+ 		<constructor-arg ref="fortune"/>
+   	</bean>
+   	
+   	<bean id="fortune"
+ 		class="Program2.Fortune">	
+  	</bean> -->
+  	
+  	
+  	<!-- Program 3 -->
+  	<!-- <bean id = "spellChecker" 
+  		class = "Program3.SpellChecker">
+  	</bean>
+  	
+  	<bean id = "myTextEditor"
+  		class = "Program3.TextEditor">
+  		<constructor-arg ref="spellChecker"/>
+  	</bean> -->
+  
+  	<!-- Program 4 -->	
+  	<!-- <bean id="e" class="Program4.Employee">  
+		<constructor-arg value="071" type="int" ></constructor-arg>  
+		<constructor-arg value="Chirag19CSU071"></constructor-arg>  
+	</bean> --> 
+	
+	<!-- Program 4 -->
+	<!-- <bean id="a1" class="Program4.Address">  
+		<constructor-arg value="Sirsa"></constructor-arg>  
+		<constructor-arg value="HR"></constructor-arg>  
+		<constructor-arg value="India"></constructor-arg>  
+	</bean>  
+	  
+	  
+	<bean id="e" class="Program4.Employee">  
+		<constructor-arg value="71" type="int"></constructor-arg>  
+		<constructor-arg value="Chirag19CSU071"></constructor-arg>  
+		<constructor-arg>  
+			<ref bean="a1"/>  
+		</constructor-arg>  
+	</bean> -->  
+	
+	
+	<!-- Program 5 -->
+	<!-- <bean id="q" class="Program5.Question">  
+		<constructor-arg value="111"></constructor-arg>  
+		<constructor-arg value="What is java?"></constructor-arg>  
+		<constructor-arg>  
+			<list>  
+				<value>Java is a programming language</value>  
+				<value>Java is a Platform</value>  
+				<value>Java is an Island of Indonasia</value>  
+			</list>  
+		</constructor-arg>  
+	</bean>  -->
+	
+	<!-- Program 6 -->
+	<!-- <bean id="q" class="Program6.Question">  
+		<constructor-arg value="111"></constructor-arg>  
+		<constructor-arg value="What is java?"></constructor-arg>  
+		<constructor-arg>  
+			<map>  
+				<entry key="Java is a Programming Language"  value="Chirag Sardana"></entry>  
+				<entry key="Java is a Platform" value="Yes"></entry>  
+				<entry key="Java is an Island" value="No"></entry>  
+			</map>  
+		</constructor-arg>  
+	</bean> -->
+	 
+	 <!-- Program 7 -->
+	 
+		 <!-- <bean id="fortune"
+	 		class="Program2.Fortune">	
+	  	</bean> -->
+	  	<!-- 
+		<bean id="myCricketCoach" class="Program7.CricketCoach"> 
+			<constructor-arg>  
+				<ref bean="fortune"/>  
+			</constructor-arg>  
+			<constructor-arg value="Chirag"></constructor-arg>  
+			<constructor-arg value="Chirag19CSU071@ncuindia.edu"></constructor-arg>  
+			<constructor-arg value="20" type="Integer"></constructor-arg>  
+		</bean>  
+	  
+	  	<bean id = "address" class = "Program4.Address"> 
+			<constructor-arg name="city" value="Sirsa"></constructor-arg>  
+			<constructor-arg name="state" value="Haryana"></constructor-arg>  
+			<constructor-arg name="country" value="India"></constructor-arg>
+		</bean>
+		
+		  <bean id="myCricketCoach1" class="Program7.CricketCoach"> 
+				<property name="fortune" ref="fortune"/> 
+				 <property name="name" value="Chirag"/>
+				 <property name="email_id" value = "Chirag19CSU071@ncuindia.edu"/>
+				 <property name="age" value = "20"/>
+				 <property name = "address" ref="address"></property>
+		</bean> 
+		
+		<bean id="myCricketCoach2" class="Program7.CricketCoach"> 
+			<constructor-arg>  
+				<ref bean="fortune"/>  
+			</constructor-arg>  
+			<constructor-arg value="Chirag"></constructor-arg>  
+			<constructor-arg value="Chirag19CSU071@ncuindia.edu"></constructor-arg>  
+			<constructor-arg value="20" type="Integer"></constructor-arg> 
+			<constructor-arg>  
+				<ref bean="address"/>  
+			</constructor-arg> 
+		</bean>  -->
+		<!-- 
+		<bean id = "address" class = "Program4.Address"> 
+			<constructor-arg name="city" value="Sirsa"></constructor-arg>  
+			<constructor-arg name="state" value="Haryana"></constructor-arg>  
+			<constructor-arg name="country" value="India"></constructor-arg>
+		</bean>
+		
+		<bean id ="myTennisCoach" class  = "Program7.TennisCoach" scope = "singleton">
+			<constructor-arg>  
+				<ref bean="fortune"/>  
+			</constructor-arg>  
+			<constructor-arg value="Chirag"></constructor-arg>  
+			<constructor-arg value="Chirag19CSU071@ncuindia.edu"></constructor-arg>  
+			<constructor-arg value="20" type="Integer"></constructor-arg> 
+			<constructor-arg>  
+				<ref bean="address"/>  
+			</constructor-arg> 
+		</bean>
+		
+		<bean id ="myTennisCoach1" class  = "Program7.TennisCoach" scope = "prototype">
+			<property name="fortune" ref="fortune"/> 
+			<property name = "address" ref="address"></property>
+		</bean> -->
+		 
+		 <!-- Program 8 -->
+		 <!-- <bean id = "course" class = "Program8.Course">
+				
+		 </bean> -->
+		 
+		 <!-- Program 9 -->
+		<!-- <bean id = "myRange" class = "Program9.Range" lazy-init = "false" scope = "singleton">
+		</bean>
+		<bean id = "program9" class = "Program9.CountingNumbers" lazy-init ="default"
+			init-method = "initMethod" 
+			destroy-method = "destroyMethod">
+			 <property name="startingNumber" value="10"/> 
+			<property name = "endingNumber" value = "100"></property>
+			<property name = "range" ref="myRange"></property>
+		</bean> -->
+		
+		<!-- Program 10 -->
+		<!-- <bean id="address1" class="Program10.Address">  
+			<constructor-arg value="Sirsa"></constructor-arg>  
+			<constructor-arg value="HR"></constructor-arg>  
+			<constructor-arg value="India"></constructor-arg>  
+		</bean>
+		<bean id="address2" class="Program10.Address">  
+			<constructor-arg value="Gurugram"></constructor-arg>  
+			<constructor-arg value="HR"></constructor-arg>  
+			<constructor-arg value="India"></constructor-arg>  
+		</bean>
+		<bean id="address3" class="Program10.Address">  
+			<constructor-arg value="Mumbai"></constructor-arg>  
+			<constructor-arg value="Maharastra"></constructor-arg>  
+			<constructor-arg value="India"></constructor-arg>  
+		</bean>
+		
+		<bean id = "program10" class = "Program10.Details"
+			init-method = "initMethod" 
+			destroy-method = "destroyMethod">
+			<constructor-arg>
+				<list>  
+					<value>Java1</value>  
+					<value>Java2</value>  
+					<value>Java3</value>  
+				</list>
+			</constructor-arg>  
+			<constructor-arg>
+				<set>
+				    <value>123456789</value>
+				    <value>2345656789</value>
+				    <value>7896789</value>
+   				 </set>
+			</constructor-arg> 
+			<constructor-arg>
+				<map> 
+					<entry key="123456789" value="abc"/>
+				 	<entry key="2345656789" value="xyz"/>
+				 	<entry key="7896789" value="def"/>
+				</map> 
+			</constructor-arg>
+			 
+			<constructor-arg>  
+				<map>  
+					<entry key="123456789" value-ref="address1"/>
+				 	<entry key="2345656789" value-ref="address2"/>
+				 	<entry key="7896789" value-ref ="address3"/>
+				</map>  
+			</constructor-arg>
+			<constructor-arg>
+				<props> 
+					<prop key="123456789" >Chirag19CSU071@ncuindia.edu</prop>
+				 	<prop key="2345656789" >Chiragsardanasrs@gmail.com</prop>
+				 	<prop key="7896789" >Chiragsardana12@gmail.com</prop>
+				</props>
+			</constructor-arg> 
+		</bean>
+		<bean id = "program10a" class = "Program10.Details"
+			init-method = "initMethod" 
+			destroy-method = "destroyMethod">
+			<property name = "names">
+				<list>  
+					<value>Java1</value>  
+					<value>Java2</value>  
+					<value>Java3</value>  
+				</list>
+			</property>  
+			<property name = "Phno">
+				<set>
+				    <value>123456789</value>
+				    <value>2345656789</value>
+				    <value>7896789</value>
+   				 </set>
+			</property> 
+			<property name = "aadharNo">
+				<map> 
+					<entry key="123456789" value="abc"/>
+				 	<entry key="2345656789" value="xyz"/>
+				 	<entry key="7896789" value="def"/>
+				</map> 
+			</property>
+			 
+			<property name = "address">  
+				<map>  
+					<entry key="123456789" value-ref="address1"/>
+				 	<entry key="2345656789" value-ref="address2"/>
+				 	<entry key="7896789" value-ref ="address3"/>
+				</map>  
+			</property>
+			<property name = "email">
+				<props> 
+					<prop key="123456789" >Chirag19CSU071@ncuindia.edu</prop>
+				 	<prop key="2345656789" >Chiragsardanasrs@gmail.com</prop>
+				 	<prop key="7896789" >Chiragsardana12@gmail.com</prop>
+				</props>
+			</property> 
+		</bean>
+		 -->
+		<bean id ="program11ClassC" class="Program11.ClassC" ></bean>
+		<bean id ="program11ClassB" class="Program11.ClassB" >
+			<property name ="classc" ref="program11ClassC"/>
+		</bean>
+		<bean id ="program11ClassA" class="Program11.ClassA" >
+			<property name ="classb" ref="program11ClassB"/>
+		</bean>
+		
+		
+</beans>
