@@ -21,4 +21,13 @@
 		<property name ="name" value="Chirag Sardana"/>
 		<property name ="employeeNo" value="1123456789"/>
 	</bean>
+	<bean id ="employee1" class="ncu.MavenSpringProgram1.Employee" autowire="byName">
+		<property name ="name" value="Ayush Singh"/>
+		<property name ="employeeNo" value="1123456789"/>
+	</bean>
+
+	<bean id ="employee2" class="ncu.MavenSpringProgram1.Employee" autowire="byType">
+		<property name ="name" value="Deepak Jindal"/>
+		<property name ="employeeNo" value="1123456789"/>
+	</bean>
 </beans>
