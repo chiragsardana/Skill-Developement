@@ -1,12 +1,20 @@
 package ncu.MavenSpringProgram1;
 
 public class Department {
+	public Department(Integer departmentNo, String departmentName, Integer departmentPhoneNo, Address address) {
+		super();
+		this.departmentNo = departmentNo;
+		this.departmentName = departmentName;
+		this.departmentPhoneNo = departmentPhoneNo;
+		this.address = address;
+	}
 	public Department() {
 		super();
 	}
 	private Integer departmentNo;
 	private String departmentName;
 	private Integer departmentPhoneNo;
+	private Address address;
 	public Department(Integer departmentNo, String departmentName, Integer departmentPhoneNo) {
 		super();
 		this.departmentNo = departmentNo;
@@ -33,7 +41,13 @@ public class Department {
 	}
 	@Override
 	public String toString() {
-		return "Deartment [departmentNo=" + departmentNo + ", departmentName=" + departmentName + ", departmentPhoneNo="
+		return "Department [departmentNo=" + departmentNo + ", departmentName=" + departmentName + ", departmentPhoneNo="
 				+ departmentPhoneNo + "]";
+	}
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 }
