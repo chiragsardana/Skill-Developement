@@ -1,0 +1,15 @@
+
+Entities: 
+
+Strong: Employee, Department, Project
+Weak: Dependent
+
+
+Relationships:
+
+Manages               1:1  Employee and Department
+Works_for           N:1 Employee and Department
+Controls               1:N  Department and Project
+Supervision          1:N  Recursive (Employee)
+Works_on           M:N  Emloyee and Project
+Dependents_of     1:N  Employee and Dependent
