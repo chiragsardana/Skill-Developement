@@ -1,0 +1,197 @@
+Creating Table
+
+1. Department Table: 
+
+create table DEPARTMENT
+(
+Dname varchar(15) not null,
+Dnumber int not null,
+Mgr_ssn char(9) not null,
+Mgr_start_date date,
+primary key(Dnumber),
+unique(Dname)
+# foreign key(Mgr_ssn) references EMPLOYEE(Ssn)
+);
+
+2. Employee Table: 
+
+create table EMPLOYEE
+(
+Fname varchar(15) not null,
+Minit char,
+Lname varchar(15) not null,
+Ssn char(9) not null,
+Bdate date,
+Address varchar(30),
+Sex char,
+Salary decimal(10,2),
+Super_ssn char(9),
+Dno int not null,
+primary key(Ssn),
+foreign key(Super_ssn) references EMPLOYEE(Ssn),
+foreign key(Dno) references DEPARTMENT(Dnumber)
+);
+
+3. Dept_Locations Table: 
+
+create table DEPT_LOCATIONS
+(
+Dnumber int not null,
+Dlocation varchar(15),
+PRIMARY KEY (Dnumber,Dlocation),
+FOREIGN KEY (Dnumber) REFERENCES DEPARTMENT(Dnumber)
+);
+
+4. Project Table: 
+
+create TABLE PROJECT
+(
+Pname varchar(15) not null,
+Pnumber int not null,
+Plocation varchar(15),
+Dnum int not null ,
+primary key (Pnumber),
+UNIQUE(Pname),
+FOREIGN KEY(Dnum) references DEPARTMENT(Dnumber)
+);
+
+5. Works_On Table: 
+
+create table WORKS_ON
+(
+Essn char(9) not null,
+Pno int not null,
+Hours DECIMAL(3,1) not null,
+PRIMARY KEY(Essn,Pno),
+FOREIGN KEY(Essn) references EMPLOYEE(Ssn),
+FOREIGN KEY (Pno) references PROJECT(Pnumber)
+);
+
+6. Dependent Table: 
+
+CREATE table DEPENDENT
+(
+Essn char(9) not null ,
+Dependent_name varchar(15) not null ,
+Sex char,
+Bdate DATE,
+Relationship varchar(8),
+PRIMARY KEY(Essn,Dependent_name),
+FOREIGN KEY(Essn) references EMPLOYEE(Ssn)
+);
+
+Inserting Values in the Tables
+
+1. Inserting Values in DepartmentTable:
+
+INSERT INTO DEPARTMENT VALUES ('CSE', 1, '123456789', '2020-01-15');
+
+INSERT INTO DEPARTMENT (Dname, Dnumber, Mgr_ssn)
+VALUES ('ECE', 2, '123456780');
+
+INSERT INTO DEPARTMENT VALUES ('IT', 3, '123456781', '2020-10-14');
+
+INSERT INTO DEPARTMENT (Dname, Dnumber, Mgr_ssn, Mgr_start_date)
+VALUES ('CSE-Full Stack', 4, '123456782', '2021-01-12'),
+       ('CSE-Cyber',5,'123456784', '2020-10-13');
+
+2. Inserting Values in Employee Table:
+
+INSERT INTO EMPLOYEE (Fname, Lname, Ssn, Bdate, Address, Sex, Salary, Dno)
+VALUES ('Chirag', 'Sardana', '123456782', '2000-10-13', 'Sirsa', 'M', 10000000.12,1);
+
+INSERT INTO EMPLOYEE (Fname, Minit, Lname, Ssn, Bdate, Address, Sex, Salary, Super_ssn, Dno)
+VALUES ('Anuj', ' ', 'Sharma', '123456783', '2001-10-12', 'Delhi', 'M', 12000000.12, '123456782',1);
+
+INSERT INTO EMPLOYEE (Fname, Lname, Ssn, Bdate, Address, Sex, Salary, Dno)
+VALUES ('Ayush', 'Singh', '123456784', '2001-05-05', 'Delhi', 'M', 12000000.12,1);
+
+INSERT INTO EMPLOYEE (Fname, Minit, Lname, Ssn, Bdate, Address, Sex, Salary, Super_ssn, Dno)
+VALUES ('Deepak',' ', 'Jindal', '123456785', '2000-08-26','Near DTU Delhi','M',10000000.12,'123456782',1),
+       ('Namit', ' ', 'Kumar','123456786', '2000-08-26', 'Gurugram' , 'M', 10000000.12, '123456785',2);
+
+3. Inserting Values in Dept_Locations Table:
+
+INSERT INTO DEPT_LOCATIONS (Dnumber, Dlocation)
+VALUES (1, 'Gurugram');
+
+INSERT INTO DEPT_LOCATIONS (Dnumber, Dlocation)
+VALUES (1, 'Delhi');
+
+INSERT INTO DEPT_LOCATIONS (Dnumber, Dlocation)
+VALUES (1, 'Sirsa');
+
+4. Inserting Values in Project Table:
+
+INSERT INTO PROJECT (Pname, Pnumber, Plocation, Dnum)
+VALUES ('getRide', 71, 'Gurugram', 1);
+
+INSERT INTO PROJECT (Pname, Pnumber, Dnum)
+VALUES ('Light', 70, 2);
+
+INSERT INTO PROJECT (Pname, Pnumber, Plocation, Dnum)
+VALUES ('PortFolio', 711, 'NCU', 3);
+
+5. Inserting Values in Works_On Table:
+
+INSERT INTO WORKS_ON (Essn, Pno, Hours)
+VALUES ('123456782', 71, 12.1);
+
+INSERT INTO WORKS_ON (Essn, Pno, Hours)
+VALUES ('123456783', 711, 11.2);
+
+INSERT INTO WORKS_ON (Essn, Pno, Hours)
+VALUES ('123456784', 70, 24.2);
+
+6. Inserting Values in Dependent Table:
+
+INSERT INTO DEPENDENT (Essn, Dependent_name, Sex, Bdate, Relationship)
+VALUES ('123456782', 'Dheeraj Sardana','M', '2000-12-10', 'Brother');
+
+INSERT INTO DEPENDENT (Essn, Dependent_name, Sex, Bdate, Relationship)
+VALUES ('123456782', 'Dheeraj Sardana','M', '2000-12-10', 'Brother');
+
+INSERT INTO DEPENDENT (Essn, Dependent_name)
+VALUES ('123456783', 'Anuj Sharma');
+
+INSERT INTO DEPENDENT (Essn, Dependent_name, Relationship)
+VALUES ('123456782', 'Deepak','Friend');
+
+Command: DESC DEPARTMENT;
+
+Command: DESC EMPLOYEE;
+
+ 
+
+Command: DESC DEPT_LOCATIONS;
+
+ 
+
+Command: DESC PROJECT;
+
+ 
+
+Command: DESC WORKS_ON;
+ 
+
+Command: DESC DEPENDENT;
+ 
+
+Command: SELECT * FROM DEPARTMENT;
+ 
+Command: SELECT * FROM EMPLOYEE;
+
+ 
+
+Command: SELECT * FROM DEPT_LOCATIONS;
+
+ 
+
+Command: SELECT * FROM PROJECT;
+
+ 
+
+Command: SELECT * FROM WORKS_ON;
+
+ 
+Command: SELECT * FROM DEPENDENT;
