@@ -1,0 +1,114 @@
+Before Retrieving, I am going to Insert Data More According to the Question Given Above.
+
+INSERT INTO EMPLOYEE (Fname, Minit, Lname, Ssn, Bdate, Address, Sex, Salary, Dno)
+VALUES ('John', "B", 'Smith', '12345677', '1990-05-05', 'Delhi', 'M', 12000000.12,1);
+
+INSERT INTO DEPARTMENT VALUES ('Research', 6, '12345677', '2020-10-14');
+
+INSERT INTO EMPLOYEE (Fname,Lname, Ssn, Bdate, Address, Sex, Salary, Dno)
+VALUES ('Aastha', ' ','12345678', '1949-05-05', 'Delhi', 'F', 12000000.12,6);
+
+INSERT INTO PROJECT (Pname, Pnumber, Plocation, Dnum)
+VALUES ('LOS', 108, 'houston', 6);
+
+INSERT INTO EMPLOYEE (Fname,Lname, Ssn, Bdate, Address, Sex, Salary, Dno)
+VALUES ('Kanu', 'Sardana','12345679', '1950-05-05', 'Sirsa', 'M', 40000000.12,5);
+
+INSERT INTO EMPLOYEE (Fname,Lname, Ssn, Bdate, Address, Sex, Salary, Dno)
+VALUES ('Lovkesh', 'Sardana','123456712', '1950-10-13', 'Texas', 'M', 40000000.12,5);
+INSERT INTO PROJECT (Pname, Pnumber, Plocation, Dnum)
+VALUES ('ProductX', 121, 'Texas', 6);
+
+INSERT INTO WORKS_ON (Essn, Pno, Hours)
+VALUES ('123456712', 121, 12.2);
+
+From the COMPANY database as mentioned and described in the previous database :
+
+1) Retrieve the birth date and address of the employee(s) whose name
+is ‘John B. Smith’.
+
+
+Command: SELECT Bdate, Address FROM EMPLOYEE WHERE Fname= "john" AND Minit ="B" AND Lname ="Smith";
+
+
+ 
+
+2) Retrieve the name and address of all employees who work for the ‘Research’ department.
+
+Command: SELECT Fname, Lname, Address FROM EMPLOYEE, Department WHERE Dname="Research"AND Dnumber=Dno;
+
+
+ 
+
+3) For every project located in ‘houston’, list the project number, the
+controlling department number, and the department manager’s last name,
+address, and birth date
+
+Command: SELECT Pnumber,Dnum, Lname, Address, Bdate FROM PROJECT,DEPARTMENT,EMPLOYEE WHERE Dnum = Dnumber AND Mgr_ssn = Ssn AND Plocation="houston";
+
+ 
+
+4) Select all combinations of EMPLOYEE Ssn and DEPARTMENT Dname in the database.
+
+Command: SELECT Ssn, Dname FROM EMPLOYEE, Department;
+
+ 
+ 
+
+5) Retrieve all the attribute values of any EMPLOYEE who works in DEPARTMENT number 5
+
+Command: SELECT * FROM EMPLOYEE WHERE Dno=5;
+
+ 
+
+6) Retrieve all distinct salary values.
+
+Command: SELECT DISTINCT Salary FROM EMPLOYEE;
+
+ 
+
+7) Make a list of all project numbers for projects that involve an employee whose last name is
+‘Smith’, either as a worker or as a manager of the department that controls the project.
+
+Command: (SELECT DISTINCT(Pnumber)
+FROM Project, Department, Employee
+WHERE PROJECT.Dnum = DEPARTMENT.Dnumber AND Mgr_ssn = Ssn AND Lname='Smith')
+UNION
+(SELECT DISTINCT(Pnumber)
+FROM Project, Works_On, Employee
+WHERE PROJECT.Pnumber = WORKS_ON.Pno AND WORKS_ON.Essn=EMPLOYEE.Ssn AND Lname= 'Smith')
+
+ 
+
+8) Retrieve all employees whose address is in Houston OR Texas.
+
+Command: SELECT Fname, Lname FROM EMPLOYEE WHERE Address LIKE "%Texas%" OR "%Houstan%";
+
+ 
+
+9) Find all employees who were born during the 1950s
+
+Command: SELECT Fname, Lname FROM emp WHERE Bdate LIKE "1950%";
+
+ 
+
+
+10) Retrieve a list of employees and the projects they are working on, ordered by department
+and, within each department, ordered alphabetically by last name, then first name.
+
+Command: SELECT D.Dname, E.Lname, E.Fname, P.Pname
+FROM Department AS D, Employee AS E, Works_On AS W, Project AS P
+WHERE D.Dnumber=E.Dno AND E.Ssn=W.Essn AND W.Pno=P.Pnumber
+ORDER BY D.Dname, E.Lname, E.Fname;
+
+ 
+
+
+11)Show the resulting salaries if every employee working on the ‘ProductX’ project is given a 10 percent raise
+
+Command: SELECT E.Fname, E.Lname, 1.1 * E.Salary AS Increased_sal FROM EMPLOYEE AS E, WORKS_ON AS W, PROJECT AS P WHERE E.Ssn=W.Essn AND W.Pno=P.Pnumber AND P.Pname="ProductX";
+
+
+ 
+
+
