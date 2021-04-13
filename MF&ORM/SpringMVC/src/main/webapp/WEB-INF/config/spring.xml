@@ -9,6 +9,8 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 <context:annotation-config></context:annotation-config>
 <context:component-scan base-package="SBK"></context:component-scan>
 <mvc:annotation-driven></mvc:annotation-driven>
+<!-- To add the resources-css,image,javascript this line you have to add in the code anywhere in the beans tag -->
+<mvc:resources mapping="/resources/**" location="/resources/" />
 
 <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	<property name="prefix" value="/WEB-INF/jsps/"/>

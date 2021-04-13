@@ -4,10 +4,6 @@
 <html>
 <body>
 <h2>Welcome ${msg }</h2>
-<%-- <form action="login" method="post">
-<input type="text" name="userId" placeholder="enter user name">
-<input type="password" name="pwd" placeholder="enter user pwd">
-<button>login</button> --%>
 </form>
 </body>
 </html>
