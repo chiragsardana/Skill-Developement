@@ -1,0 +1,199 @@
+CREATE TABLE Pack_grades (
+    Grade_id varchar(10) not null,
+    Grade_name varchar(20),
+    Min_price DECIMAL(10,2),
+    Max_price DECIMAL(10,2),
+    PRIMARY KEY (Grade_id)
+);
+
+CREATE TABLE Sectors(
+    Sector_id varchar(10) not null ,
+    Sector_name varchar(20),
+    primary key (Sector_id)
+);
+
+CREATE TABLE Packages(
+  Pack_id varchar(10) not null ,
+  speed varchar(10),
+  Start_date date,
+  Monthly_payment DOUBLE(8,2),
+  Sector_id varchar(10),
+  PRIMARY KEY (Pack_id),
+  FOREIGN KEY (Sector_id) references Sectors(Sector_id)
+);
+
+CREATE TABLE Customers(
+    Customer_id varchar(10) not null ,
+    First_nmae varchar(50),
+    Last_name varchar(50),
+    Birth_date date,
+    Join_date date,
+    City varchar(20),
+    Pack_id varchar(10),
+    State varchar(20),
+    PRIMARY KEY (Customer_id),
+    FOREIGN KEY (Pack_id) references Packages(Pack_id)
+);
+
+# 1. Inserting Values in Pack_grades
+
+INSERT INTO Pack_grades(Grade_id, Grade_name, Min_price, Max_price)
+VALUES ('12345','A+', 329, 999);
+
+INSERT INTO Pack_grades(Grade_id, Grade_name, Min_price, Max_price)
+VALUES ('12346', 'A',429, 1099),
+       ('12347','B+', 529, 1199);
+
+INSERT INTO Pack_grades(Grade_id, Grade_name, Min_price, Max_price)
+VALUES('12348', 'B', 629, 1299);
+
+
+# 2. Inserting Values in Sectors
+
+INSERT INTO Sectors(Sector_id, Sector_name)
+VALUES ('23A', 'Sector 23 A'),
+       ('23B', 'Sector 23 B'),
+       ('23C', 'Sector 23 C');
+
+INSERT INTO Sectors(Sector_id, Sector_name)
+VALUES ('23D', 'Sector 23 D');
+
+
+# 3. Inserting Values in Packages
+
+INSERT INTO Packages(Pack_id, speed, Start_date, Monthly_payment, Sector_id)
+VALUES ('20', '200Mbps', '2020-08-12', 1000, '23A');
+
+INSERT INTO Packages(Pack_id, speed, Start_date, Monthly_payment, Sector_id)
+VALUES ('10', '100Mbps', '2006-10-13', 800,'23B'),
+       ('27','270Mbps', '2005-11-15', 1300, '23C'),
+       ('22', '220Mbps', '2006-06-10', 1250, '23D');
+
+# 4. Inserting Values in Customers
+
+INSERT INTO Customers(Customer_id, First_nmae, Last_name, Birth_date, Join_date, City, Pack_id, State)
+VALUES ('100', 'Ayush', 'Singh', '2001-05-10', '2006-05-10', 'Delhi','22', 'Delhi');
+
+INSERT INTO Customers(Customer_id, First_nmae, Last_name, Birth_date, Join_date, City, Pack_id, State)
+VALUES ('103', 'Chirag', 'Sardana', '2000-10-13', '2006-12-23', 'Sirsa', '27', 'Haryana'),
+       ('106', 'Amado', 'Taylor', '2002-11-15', '2005-05-12','Gurugram','10', 'Haryana');
+
+
+# 1)	Write a query to display first name, last name, package number and
+# internet speed for all customers.
+
+SELECT First_nmae As First_Name, Last_name, P.Pack_id As Package_Number,
+       speed As Internet_Speed
+From Customers JOIN Packages P on P.Pack_id = Customers.Pack_id;
+
+# 2)	Write a query to display first name, last name, package number and
+# internet speed for all customers whose package number equals 22 or 27.
+# Order the query in ascending order by last name.
+
+SELECT First_nmae As First_Name, Last_name, P.Pack_id As Package_Number,
+       speed As Internet_Speed
+From Customers JOIN Packages P on P.Pack_id = Customers.Pack_id
+WHERE P.Pack_id = '22' OR P.Pack_id = '27'
+ORDER BY Last_name;
+
+# 3)	Display the package number, internet speed, monthly payment and
+# sector name for all packages (Packages and Sectors tables).
+
+SELECT Pack_id As Package_Number, speed As Internet_Speed, Monthly_payment, Sectors.Sector_name
+FROM Packages NATURAL JOIN Sectors;
+
+# 4)	Display the customer name, package number, internet speed,
+# monthly payment and sector name for all customers (Customers, Packages and
+# Sectors tables).
+
+SELECT First_nmae AS First_name, Last_name, P.Pack_id As Package_Number,
+       speed AS Internet_Speed, Monthly_payment, S.Sector_name
+FROM Customers JOIN Packages P on P.Pack_id = Customers.Pack_id
+    JOIN Sectors S on S.Sector_id = P.Sector_id;
+
+# 5)	Display the customer name, package number, internet speed,
+# monthly payment and sector name for all customers in the business sector
+# (Customers, Packages and Sectors tables).
+
+INSERT INTO Sectors(sector_id, sector_name)
+VALUES ('Business', 'Business');
+
+INSERT INTO Packages(Pack_id, speed, Start_date, Monthly_payment, Sector_id)
+VALUES ('71', '100Mbps', '2021-04-21',2001,'Business');
+
+INSERT INTO Customers(Customer_id, First_nmae, Last_name, Birth_date, Join_date, City, Pack_id, State)
+VALUES ('112','Deepak','Jindal','2001-08-26','2006-10-12','Delhi','71','Delhi');
+
+SELECT First_nmae AS First_name, Last_name, Packages.Pack_id As Package_Number,
+       Packages.speed As Internet_Speed, Packages.Monthly_payment, Sectors.Sector_name
+FROM Customers NATURAL JOIN Packages NATURAL JOIN Sectors
+WHERE Sector_name = 'Business';
+
+# 6)	Display the last name, first name, join date, package number,
+# internet speed and sector name for all customers in the private sector
+# who joined the company in the year 2006.
+
+INSERT INTO Sectors(sector_id, sector_name)
+VALUES ('Private', 'Private');
+
+INSERT INTO Packages(Pack_id, speed, Start_date, Monthly_payment, Sector_id)
+VALUES ('74', '100Mbps', '2021-04-21',2002,'Private');
+
+INSERT INTO Customers(Customer_id, First_nmae, Last_name, Birth_date, Join_date, City, Pack_id, State)
+VALUES ('115','Deepak',' ','2001-08-26','2006-10-12','Delhi','74','Delhi');
+
+UPDATE Packages set Sector_id = 'Private' Where Pack_id = '74';
+
+SELECT * FROM Sectors;
+
+SELECT Last_name, First_nmae AS First_name, Join_date, P.Pack_id As Package_number,
+       speed As Internet_speed, Sector_name FROM Customers NATURAL JOIN Packages P
+NATURAL JOIN Sectors WHERE Sector_name = 'Private' AND YEAR(Join_date) = 2006;
+
+# 7)	Display the package number, internet speed, monthly payment and
+# package grade for all packages (Packages and Pack_Grades tables).
+
+SELECT Pack_id As Package_number, speed AS Internet_speed, Monthly_payment,;
+
+# 8)	Display the first name, last name, internet speed and monthly payment
+# for all customers. Use INNER JOIN to solve this exercise.
+
+SELECT First_nmae AS First_name, Last_name, speed AS Internet_speed, Monthly_payment
+FROM Customers INNER JOIN Packages P on Customers.Pack_id = P.Pack_id;
+
+# 9)	 Display the last name, first name and package number for all
+# customers who have the same package number as customer named ‘Amado Taylor’
+# (Customers table).
+
+INSERT INTO Customers(Customer_id, First_nmae, Last_name, Birth_date, Join_date, City, Pack_id, State)
+VALUES ('109', 'Kanu', 'Sardana', '2000-10-13', '2006-10-12', 'Hansi','10','Haryama');
+
+SELECT Last_name, First_nmae As First_name, P.Pack_id As Package_Number
+FROM Customers JOIN Packages P on P.Pack_id = Customers.Pack_id
+WHERE P.Pack_id In (SELECT Pack_id FROM Customers WHERE First_nmae ='Amado' AND
+                                                          Last_name = 'Taylor');
+
+SELECT Pack_id FROM Customers WHERE First_nmae ='Amado' AND
+                                                          Last_name = 'Taylor';
+# 10)	 Display the last name, first name and monthly discount for all
+# customers whose monthly discount is lower than the monthly discount of
+# employee number 103 (Customers table).
+
+SELECT Last_name, First_nmae As First_name, Monthly_payment
+FROM Customers NATURAL JOIN Packages
+WHERE Monthly_payment < ALL(SELECT P2.Monthly_payment FROM Customers JOIN Packages P2
+    on P2.Pack_id = Customers.Pack_id WHERE Customer_id = '103');
+
+
+SELECT P2.Monthly_payment FROM Customers JOIN Packages P2
+    on P2.Pack_id = Customers.Pack_id WHERE Customer_id = '103';
+
+# 11)	 Display the package number and internet speed for all packages whose
+# internet speed is equal to the internet speed of package number 10 (Packages table).
+
+INSERT INTO Packages(pack_id, speed, start_date, monthly_payment, sector_id)
+VALUES ('15','100Mbps', '2021-04-22', '2000','23A');
+
+SELECT Packages.Pack_id As Package_number, Packages.speed AS Internet_speed
+FROM Packages JOIN Packages P on P.Pack_id = '10' AND Packages.speed = P.speed;
+
