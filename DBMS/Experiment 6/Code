@@ -1,0 +1,98 @@
+# Experiment 6th
+
+# 1)	Find the sum of the salaries of all employees, the maximum salary,
+# the minimum salary, and the average salary.
+
+SELECT SUM(Salary), MAX(Salary), MIN(Salary), AVG(Salary) FROM EMPLOYEE;
+
+# 2)	Find the sum of the salaries of all employees of the ‘Research’department,
+# as well as the maximum salary, the minimum salary, and the average salary in this department.
+
+SELECT * FROM DEPARTMENT;
+
+SELECT * FROM EMPLOYEE;
+
+SELECT SUM(Salary) , MAX(Salary), MIN(Salary), AVG(Salary)
+FROM EMPLOYEE JOIN DEPARTMENT D on D.Dnumber = EMPLOYEE.Dno
+WHERE Dname = 'Research';
+
+
+# 3)	Retrieve the total number of employees in the company.
+
+SELECT COUNT(*) FROM EMPLOYEE;
+
+# 4)	Retrieve the number of employees in the ‘Research’ department.
+
+SELECT COUNT(*) FROM EMPLOYEE JOIN DEPARTMENT D on D.Dnumber = EMPLOYEE.Dno
+WHERE Dname = 'Research';
+
+# 5)	Count the number of distinct salary values in the database
+
+SELECT COUNT(DISTINCT Salary) FROM EMPLOYEE;
+
+# 6)	For each department, retrieve the department number, the number of employees in
+# the department, and their average salary.
+
+SELECT DNO, COUNT(*), AVG(SALARY)
+FROM EMPLOYEE
+GROUP BY DNO;
+
+# 7)	For each project, retrieve the project number, the project name, and the number of employees
+# who work on that project.
+
+SELECT Pno, Pname, COUNT(*) FROM WORKS_ON JOIN PROJECT P on P.Pnumber = WORKS_ON.Pno
+GROUP BY Pno, Pname;
+
+SELECT PNUMBER, PNAME, COUNT(*)
+FROM PROJECT, WORKS_ON
+WHERE PNUMBER = PNO
+GROUP BY PNUMBER, PNAME;
+# 8)	For each project on which more than two employees work, retrieve the project number,
+# the project name, and the number of employees who work on the project
+
+INSERT INTO WORKS_ON(Essn, Pno, Hours)
+VALUES ('123456785',71,12.3),
+       ('123456786','71',14);
+
+SELECT Pnumber, Pname, COUNT(*) FROM PROJECT JOIN WORKS_ON WO on PROJECT.Pnumber = WO.Pno
+GROUP BY Pnumber, Pname Having COUNT(*) > 2;
+
+SELECT * FROM WORKS_ON;
+
+
+
+
+
+# 9)	For each project, retrieve the project number, the project name, and the number of employees
+# from department 5 who work on the project.
+
+SELECT Pnumber, Pname, COUNT(*)
+FROM PROJECT JOIN WORKS_ON WO on PROJECT.Pnumber = WO.Pno
+    Join EMPLOYEE E on E.Ssn = WO.Essn AND Dno = 5
+GROUP BY Pnumber, Pname;
+
+SELECT * FROM WORKS_ON;
+
+SELECT * FROM PROJECT;
+
+SELECT * FROM EMPLOYEE;
+
+SELECT PNUMBER, PNAME, COUNT(*)
+FROM PROJECT, WORKS_ON, EMPLOYEE
+WHERE PNUMBER = PNO AND SSN = ESSN AND DNO = 5
+GROUP BY PNUMBER, PNAME;
+
+# 10)	For each department that has more than five employees, retrieve the department number and
+# the number of its employees who are making more than $40,000.
+
+INSERT INTO EMPLOYEE(Fname, Minit, Lname, Ssn, Bdate, Address, Sex, Salary, Dno)
+VALUES ('Deepanshu',' ','Goel','123456532','2002-10-12','Delhi','M',50000, 1);
+
+SELECT DNUMBER, COUNT(*)
+FROM DEPARTMENT, EMPLOYEE
+WHERE DNUMBER = DNO AND SALARY > 40000 AND
+DNO IN (SELECT DNO
+FROM EMPLOYEE
+GROUP BY DNO
+HAVING COUNT(*) > 5)
+GROUP BY DNUMBER;
