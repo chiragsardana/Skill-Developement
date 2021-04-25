@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+body {
+	background-image: url("/ValidationsBySBK/resources/img/background1.jpeg");
+	background-size: cover;
+}
+
+ 
+h3{
+  font-family: Calibri; 
+  font-size: 25pt;         
+  font-style: normal; 
+  font-weight: bold; 
+  color:Red;
+  text-align: center; 
+  text-decoration: underline
+}
+
+table{
+  font-family: Calibri; 
+  color:rgb(255, 75, 62);
+	font-size: 11pt; 
+  font-style: normal;
+  font-weight: bold;
+}
+table.inner{
+  border: 0px
+}
