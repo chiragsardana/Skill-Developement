@@ -1,0 +1,127 @@
+# Experiment 7
+
+# 1)	Make a list of all project numbers for projects that involve an employee whose last name is ‘Smith’,
+# either as a worker or as a manager of the department that controls the project.
+
+(SELECT DISTINCT PNUMBER
+FROM PROJECT, WORKS_ON, EMPLOYEE
+WHERE PNUMBER = PNO AND ESSN = SSN AND LNAME = 'Simth')
+
+UNION
+
+(SELECT DISTINCT PNUMBER
+FROM PROJECT, DEPARTMENT, EMPLOYEE
+WHERE DNUM = DNUMBER AND Mgr_ssn = SSN AND LNAME = 'Simth');
+
+# 2)	Select the Essns of all employees who work on the same project and hours as some project
+# that employee ‘John Smith’ (whose Ssn = ‘123456789’) works on.
+
+INSERT INTO WORKS_ON(Essn, Pno, Hours)
+VALUES ('12345677', 71, 12.1);
+
+SELECT Essn FROM WORKS_ON
+WHERE Hours IN (SELECT Hours FROM WORKS_ON JOIN EMPLOYEE E on E.Ssn = WORKS_ON.Essn AND E.Ssn ='12345677');
+
+SELECT Hours FROM WORKS_ON JOIN EMPLOYEE E on E.Ssn = WORKS_ON.Essn AND E.Ssn ='12345677';
+
+
+SELECT DISTINCT Essn FROM WORKS_ON
+WHERE (Pno, Hours) IN ( SELECT Pno, Hours FROM WORKS_ON WHERE Essn='12345677' );
+
+
+# 3)	Return the names of employees whose salary is greater than the salary of all the employees in
+# department 5
+
+# Finding All Employee in Department 5 and Salary
+SELECT MAX(Salary), Ssn, Salary, Dno FROM EMPLOYEE WHERE Dno = 1 GROUP BY Dno, Salary, Ssn;
+
+SELECT Ssn, Fname, Lname, Salary FROM EMPLOYEE WHERE Salary >
+                ALL (SELECT Salary FROM EMPLOYEE WHERE EMPLOYEE.Dno = 1);
+
+# 4)	Retrieve the name of each employee who has a dependent with the same first name and is the same sex
+# as the employee
+
+Select Fname, Lname FROM EMPLOYEE JOIN DEPENDENT D on EMPLOYEE.Ssn = D.Essn AND EMPLOYEE.Fname = D.Dependent_name
+AND EMPLOYEE.Sex = D.Sex;
+
+# 5)	Retrieve the names of employees who have no dependents
+
+# Firstly find the ssn of Employee who has dependents.
+SELECT DISTINCT Ssn FROM EMPLOYEE JOIN DEPENDENT D on EMPLOYEE.Ssn = D.Essn;
+
+SELECT Fname, Lname FROM EMPLOYEE
+WHERE Ssn NOT IN (SELECT DISTINCT Ssn FROM EMPLOYEE JOIN DEPENDENT D on EMPLOYEE.Ssn = D.Essn);
+
+SELECT FNAME, LNAME
+FROM EMPLOYEE
+WHERE NOT EXISTS (SELECT *
+FROM DEPENDENT
+WHERE SSN = ESSN);
+
+# 6)	List the names of managers who have at least one dependent using EXISTS and NOT EXISTS functions
+
+
+SELECT FNAME, LNAME
+FROM EMPLOYEE
+WHERE EXISTS (SELECT *
+FROM DEPENDENT
+WHERE SSN = ESSN)
+AND
+EXISTS (SELECT *
+FROM DEPARTMENT
+WHERE SSN = Mgr_ssn);
+
+
+# 7)	Retrieve the name of each employee who works on all the projects controlled by department number 5
+# using EXISTS and NOT EXISTS functions
+
+SELECT Lname, Fname
+FROM EMPLOYEE
+WHERE NOT EXISTS ( SELECT *
+                  FROM WORKS_ON B
+                  WHERE ( B.Pno IN ( SELECT Pnumber
+                                    FROM PROJECT
+                                    WHERE Dnum=5 )
+                  AND
+                  NOT EXISTS ( SELECT *
+                               FROM WORKS_ON C
+                               WHERE C.Essn=Ssn
+                               AND C.Pno=B.Pno )));
+
+
+SELECT fname, lname FROM employee
+WHERE NOT EXISTS
+(SELECT pnumber FROM project WHERE dnum=5
+AND pnumber NOT IN
+(SELECT pno FROM works_on WHERE ssn=essn));
+
+SELECT FNAME, LNAME
+FROM EMPLOYEE
+WHERE EXISTS (
+    (SELECT PNO
+    FROM WORKS_ON
+    WHERE SSN = ESSN)
+    IN
+    (SELECT Pnumber
+    FROM PROJECT
+    WHERE DNUM = 5)
+    );
+
+
+# 8)	Retrieve the names of all employees who have two or more dependents
+
+SELECT Fname, Lname, Ssn FROM EMPLOYEE
+WHERE Ssn IN (SELECT Ssn FROM EMPLOYEE JOIN DEPENDENT D on EMPLOYEE.Ssn = D.Essn
+GROUP BY Ssn HAVING COUNT(*) >= 2);
+
+
+# Employee having more than or equal to two dependents
+SELECT Ssn FROM EMPLOYEE JOIN DEPENDENT D on EMPLOYEE.Ssn = D.Essn
+GROUP BY Ssn HAVING COUNT(*) >= 2;
+# 9)	Retrieves the names of all employees who work on only one project
+
+# Firstly Find the SSn of the EMployee who works on Only One Project
+SELECT DISTINCT Essn FROM WORKS_ON GROUP BY Essn HAVING COUNT(*) =1;
+
+SELECT Fname, Lname FROM EMPLOYEE
+WHERE Ssn IN (SELECT DISTINCT Essn FROM WORKS_ON GROUP BY Essn HAVING COUNT(*) =1);
