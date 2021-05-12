@@ -1,0 +1,462 @@
+CREATE TABLE ClassRoom(
+    Building varchar(50),
+    RoomNumber INTEGER,
+    Capacity INTEGER,
+    PRIMARY KEY (Building, RoomNumber)
+);
+
+CREATE TABLE TimeSlot(
+    TimeSlotID varchar(50),
+    Day varchar(50) check ( day in ('Monday', 'Tuesday', 'Wednesday',
+                                   'Thrusday', 'Friday', 'Saturday',
+                                   'Sunday' ) ),
+#     StartTime time,
+#     EndTime time,
+    StartHour INTEGER(2) check ( StartHour  >= 0 and StartHour < 24 ),
+    StartMin INTEGER(2) check ( StartMin >= 0 and StartMin < 60 ),
+    EndHour INTEGER(2) check ( EndHour  >= 0 and EndHour < 24 ),
+    EndMin INTEGER(2) check ( EndMin >= 0 and EndMin < 60 ),
+
+    PRIMARY KEY (TimeSlotID, Day, StartHour, StartMin)
+);
+
+CREATE TABLE Department(
+    DepartmentName varchar(50),
+    Building varchar(50),
+    Budget INTEGER check ( Budget > 0 ),
+    PRIMARY KEY (DepartmentName)
+);
+
+CREATE TABLE Course(
+    CourseId varchar(50),
+    Title varchar(50),
+    DepartmentName varchar(50),
+    Credits INTEGER(2) check ( Credits > 0 ),
+    PRIMARY KEY ( CourseId ),
+    FOREIGN KEY (DepartmentName) references Department(DepartmentName)
+                    on delete set null
+);
+
+CREATE TABLE Section(
+    CourseId varchar(50),
+    SectionId varchar(50),
+    TimeSlotID varchar(50),
+    Semester varchar(50) check ( Semester in ('Fall', 'Spring', 'Winter',
+                                             'Summer') ),
+    Year INTEGER(4) check ( Year > 2020 ),
+    Building varchar(50),
+    RoomNumber INTEGER,
+    PRIMARY KEY (CourseId, SectionId, Semester, Year),
+    FOREIGN KEY (CourseId) references Course(CourseId) on delete CASCADE,
+    FOREIGN KEY (Building, RoomNumber) references ClassRoom(Building, RoomNumber) on delete set null
+);
+
+CREATE TABLE Student(
+    ID varchar(50) not null ,
+    Name varchar(50) not null,
+    DepartmentName varchar(50),
+    TotalCredit INTEGER(2) check ( TotalCredit > 0 ),
+    PRIMARY KEY (ID),
+    FOREIGN KEY (DepartmentName) references Department(DepartmentName)
+                    on delete set null
+);
+
+CREATE TABLE Instructor(
+    ID varchar(50) not null ,
+    Name varchar(50) not null ,
+    DepartmentName varchar(50),
+    Salary FLOAT(10) check ( Salary > 0.0 ),
+    PRIMARY KEY (ID),
+   FOREIGN KEY (DepartmentName) references Department(DepartmentName)
+                    on delete set null
+);
+
+CREATE TABLE Takes(
+    ID varchar(50) not null,
+    CourseId varchar(50),
+    SectionId varchar(50),
+    Semester varchar(50),
+    Year INTEGER(4),
+    Grade varchar(1) check ( Grade in ('A', 'B', 'C', 'D', 'F') ),
+    PRIMARY KEY (ID, CourseId, SectionId, Semester,Year),
+    FOREIGN KEY (CourseId, SectionId, Semester, Year) references Section(CourseId, SectionId, Semester, Year)
+                  on delete cascade ,
+    FOREIGN KEY (ID) references Student(ID)
+);
+
+CREATE TABLE Teaches(
+    ID varchar(50) not null,
+    CourseId varchar(50),
+    SectionId varchar(50),
+    Semester varchar(50),
+    Year INTEGER(4),
+    PRIMARY KEY (ID, CourseId, SectionId, Semester, Year),
+    FOREIGN KEY (CourseId, SectionId, Semester, Year) references Section(CourseId, SectionId, Semester, Year)
+                  on delete cascade ,
+    FOREIGN KEY (ID) references Instructor(ID) on delete cascade
+);
+
+CREATE TABLE Advisor(
+    StudentID varchar(50) not null ,
+    InstructorID varchar(50) ,
+    PRIMARY KEY (StudentID),
+    FOREIGN KEY (StudentID) references Student(ID) on delete cascade ,
+    FOREIGN KEY (InstructorID) references Instructor(ID) on delete set null
+);
+
+CREATE TABLE Prereq(
+    CourseId varchar(50),
+    PrereqId varchar(50),
+    PRIMARY KEY (CourseId, PrereqId),
+    FOREIGN KEY (CourseId) references Course(CourseId) on delete cascade ,
+    FOREIGN KEY (PrereqId) references Course(CourseId)
+);
+
+# Insertion in ClassRoom Table
+INSERT INTO ClassRoom(Building, RoomNumber, Capacity) VALUES (1,071, 20);
+INSERT INTO ClassRoom(Building, RoomNumber, Capacity) VALUES (2,060, 20);
+INSERT INTO ClassRoom(Building, RoomNumber, Capacity) VALUES (1,074, 20);
+INSERT INTO ClassRoom(Building, RoomNumber, Capacity) VALUES (2,076, 20);
+
+# Insertion in TimeSlot Table
+INSERT INTO TimeSlot(TimeSlotID, Day, StartHour, StartMin, EndHour, EndMin)
+VALUES (11,'Monday',13,00,14,00);
+INSERT INTO TimeSlot(TimeSlotID, Day, StartHour, StartMin, EndHour, EndMin)
+VALUES (11,'Tuesday',09,00,10,00);
+INSERT INTO TimeSlot(TimeSlotID, Day, StartHour, StartMin, EndHour, EndMin)
+VALUES (11,'Thrusday',15,30,17,00);
+INSERT INTO TimeSlot(TimeSlotID, Day, StartHour, StartMin, EndHour, EndMin)
+VALUES (11,'Saturday',09,30,16,30);
+
+# Insertion in Department
+INSERT INTO Department(DepartmentName, Building, Budget)
+VALUES ('Computer Science', 1, 2000);
+INSERT INTO Department(DepartmentName, Building, Budget)
+VALUES ('Electronics', 2, 3000);
+INSERT INTO Department(DepartmentName, Building, Budget)
+VALUES ('Information Technology', 3, 4000);
+INSERT INTO Department(DepartmentName, Building, Budget)
+VALUES ('Mechanical', 4, 6000);
+
+# Insertion in Course
+INSERT INTO Course(CourseId, Title, DepartmentName, Credits)
+VALUES (91, 'DBMS', 'Computer Science', 6);
+INSERT INTO Course(CourseId, Title, DepartmentName, Credits)
+VALUES (92, 'DE', 'Electronics', 4);
+INSERT INTO Course(CourseId, Title, DepartmentName, Credits)
+VALUES (93, 'MF&ORM', 'Information Technology', 5);
+INSERT INTO Course(CourseId, Title, DepartmentName, Credits)
+VALUES (94, 'BMCE', 'Mechanical', 8);
+
+
+
+# Insertion in Section
+INSERT INTO Section(courseid, sectionid, timeslotid, semester, year, building, roomnumber)
+VALUES (91,81,11,'Fall',2021,1,071);
+INSERT INTO Section(courseid, sectionid, timeslotid, semester, year, building, roomnumber)
+VALUES (92,82,11,'Summer',2021,2,060);
+INSERT INTO Section(courseid, sectionid, timeslotid, semester, year, building, roomnumber)
+VALUES (93,83,11,'Winter',2021,1,074);
+INSERT INTO Section(courseid, sectionid, timeslotid, semester, year, building, roomnumber)
+VALUES (94,84,11,'Spring',2021,2,076);
+
+
+# Insertion in Student
+INSERT INTO Student(id, name, departmentname, totalcredit)
+VALUES (51,'Chirag Sardana','Computer Science',4);
+INSERT INTO Student(id, name, departmentname, totalcredit)
+VALUES (52,'Ayush Singh','Electronics',5);
+INSERT INTO Student(id, name, departmentname, totalcredit)
+VALUES (53,'Deepak','Mechanical',7);
+INSERT INTO Student(id, name, departmentname, totalcredit)
+VALUES (54,'Deepak Jindal','Information Technology',2);
+
+# Insertion in Instructor
+INSERT INTO Instructor(id, name, departmentname, salary)
+VALUES (41,'Sumit Kumar','Computer Science',100100);
+INSERT INTO Instructor(id, name, departmentname, salary)
+VALUES (42,'Kanika Gupta','Mechanical',420199);
+INSERT INTO Instructor(id, name, departmentname, salary)
+VALUES (43,'Richa Chhabra','Information Technology',300099);
+INSERT INTO Instructor(id, name, departmentname, salary)
+VALUES (44,'Mehak Khurana','Computer Science',200111);
+
+
+# Insertion in Takes
+INSERT INTO Takes(id, courseid, sectionid, semester, year, grade)
+VALUES (51,91,81,'Fall',2021,'A');
+INSERT INTO Takes(id, courseid, sectionid, semester, year, grade)
+VALUES (52,92,82,'Summer',2021,'B');
+INSERT INTO Takes(id, courseid, sectionid, semester, year, grade)
+VALUES (53,93,83,'Winter',2021,'B');
+INSERT INTO Takes(id, courseid, sectionid, semester, year, grade)
+VALUES (54,91,81,'Fall',2021,'A');
+
+
+# Insertion in Teaches
+INSERT INTO Teaches(id, courseid, sectionid, semester, year)
+VALUES (41,91,81,'Fall',2021);
+INSERT INTO Teaches(id, courseid, sectionid, semester, year)
+VALUES (42,92,82,'Summer',2021);
+INSERT INTO Teaches(id, courseid, sectionid, semester, year)
+VALUES (43,93,83,'Winter',2021);
+INSERT INTO Teaches(id, courseid, sectionid, semester, year)
+VALUES (44,94,84,'Spring',2021);
+
+# Insertion in Advisor
+INSERT INTO Advisor(studentid, instructorid)
+VALUES (51,41);
+INSERT INTO Advisor(studentid, instructorid)
+VALUES (52,42);
+INSERT INTO Advisor(studentid, instructorid)
+VALUES (53,43);
+INSERT INTO Advisor(studentid, instructorid)
+VALUES (54,44);
+
+# Insertion in Prereq
+INSERT INTO Prereq(CourseId, PrereqId)
+VALUES (91,92);
+INSERT INTO Prereq(CourseId, PrereqId)
+VALUES (92,94);
+INSERT INTO Prereq(CourseId, PrereqId)
+VALUES (94,93);
+INSERT INTO Prereq(CourseId, PrereqId)
+VALUES (91,94);
+
+
+# Select * From ClassRoom
+Select * From ClassRoom
+
+# Select * From Time Slot
+Select * From TimeSlot
+
+
+# Select * From Department
+Select * From Department
+
+
+# Select * From Course
+Select * From Course
+
+
+# Select * From Section
+Select * From Section
+
+
+# Select * From Student
+Select * From Student
+
+# Select * From Instructor
+Select * From Instructor
+
+
+# Select * From Takes
+Select * From Takes
+
+
+# Select * From Teaches
+Select * From Teaches
+
+
+# Select * From Advisor
+Select * From Advisor
+
+
+# Select * From Prereq
+Select * From Prereq
+
+# DESC ClassRoom
+DESC ClassRoom;
+
+# DESC TimeSlot
+DESC TimeSlot;
+
+# DESC Department
+DESC Department;
+
+# DESC Course
+DESC Course;
+
+# DESC Section
+DESC Section;
+
+# DESC Student
+DESC Student;
+
+# DESC Instructor
+DESC Instructor;
+
+# DESC Takes
+DESC Takes;
+
+
+# DESC Teaches
+DESC Teaches;
+
+
+# DESC Advisor
+DESC Advisor;
+
+# DESC Prereq
+DESC Prereq;
+
+
+# Alter Table due to given Question's Condition
+ALTER TABLE Section MODIFY Year INTEGER(4) check ( Year > 2000 );
+
+# Find the name and department of each instructor
+Select Instructor.Name , Instructor.DepartmentName FROM Instructor;
+
+# Find the department names in the University
+SELECT Department.DepartmentName FROM Department;
+
+# Display the ID, name, department name and salary of instructors after giving a
+# 10% raise to each instructor
+
+SELECT Instructor.ID, Instructor.Name, Instructor.DepartmentName,
+       (Instructor.Salary + Instructor.Salary * 0.1 ) AS Salary From Instructor;
+
+
+# Retrieve the names of all instructors, along with their department names and
+# department building name.
+SELECT Instructor.Name, Instructor.DepartmentName, Department.Building FROM Instructor,
+                Department WHERE Instructor.DepartmentName = Department.DepartmentName;
+
+
+# Retrieve the name and corresponding course id of instructors who have taught some course
+SELECT Instructor.Name, Teaches.CourseId FROM Instructor, Teaches
+WHERE Instructor.ID = Teaches.ID;
+
+# Find instructor names and course identifiers for instructors in the Computer Science
+# department
+SELECT Instructor.Name, Teaches.CourseId FROM Instructor, Teaches
+WHERE Instructor.ID = Teaches.ID AND Instructor.DepartmentName = 'Computer Science';
+
+# Find the names of all instructors whose salary is greater than at least one instructor
+# in the Computer Science department.
+SELECT Instructor.Name FROM Instructor WHERE (Instructor.Salary > ANY (SELECT
+                        Instructor.Salary FROM Instructor WHERE
+                        Instructor.DepartmentName = 'Computer Science'));
+
+# ANY is used to select all records of a SELECT STATEMENT. It compares a value
+# to every value in a list or results from a query and if one condition is Satisfy
+# it returns true.
+
+# Find the names of all departments whose building name includes the substring ‘Watson’.
+INSERT INTO Department(DepartmentName, Building, Budget)
+VALUES ('Applied Science', 'Great Watson',2500);
+
+INSERT INTO Department(DepartmentName, Building, Budget)
+VALUES ('Management', 'IBM Watson',2900);
+
+SELECT Department.DepartmentName FROM Department WHERE Department.Building LIKE '%Watson%';
+
+# List all instructors in Computer Science department alphabetically
+SELECT Instructor.Name FROM Instructor WHERE Instructor.DepartmentName =
+                                'Computer Science' ORDER BY Instructor.Name ASC  ;
+
+# ALTER TABLE Section MODIFY Year INTEGER(4) check ( Year >= 2000 );
+
+
+
+# 'section_chk_2
+
+# ALTER TABLE Section CHECK CONSTRAINT section_chk_2;
+
+ALTER TABLE Section DROP CHECK section_chk_2;
+
+ALTER TABLE Section MODIFY Year INTEGER(4) check ( Year >= 2000 );
+
+# Find the set of all courses taught in the Fall 2009 semester
+INSERT INTO Section(courseid, sectionid, timeslotid, semester, year, building, roomnumber)
+VALUES (94,84,11,'Fall',2009,2,076);
+
+INSERT INTO Teaches(ID, CourseId, SectionId, Semester, Year)
+VALUES (43,94,84,'Fall',2009);
+
+SELECT Teaches.CourseId, Course.Title FROM Teaches, Course WHERE
+            Teaches.CourseId = Course.CourseId AND Teaches.Year = 2009 AND
+                                            Teaches.Semester = 'Fall';
+
+
+# Find the set of all courses taught either in Fall 2009 or in Spring 2010, or both
+INSERT INTO Section(courseid, sectionid, timeslotid, semester, year, building, roomnumber)
+VALUES (92,82,11,'Spring',2010,2,076);
+
+INSERT INTO Teaches(ID, CourseId, SectionId, Semester, Year)
+VALUES (42,92,82,'Spring',2010);
+
+SELECT Teaches.CourseId, Course.Title, Teaches.Semester, Teaches.Year
+                            FROM Teaches, Course WHERE
+            Teaches.CourseId = Course.CourseId AND  ( (Teaches.Year = 2009 AND
+                                            Teaches.Semester = 'Fall') OR
+                (Teaches.Year = 2010 AND Teaches.Semester = 'Spring'));
+
+# Find the set of all courses taught in the Fall 2009 as well as in Spring 2010
+INSERT INTO Section(courseid, sectionid, timeslotid, semester, year, building, roomnumber)
+VALUES (92,82,11,'Fall',2010,2,076);
+
+INSERT INTO Teaches(ID, CourseId, SectionId, Semester, Year)
+VALUES (42,92,82,'Fall',2010);
+
+# If Separate View Created for both Select Queries then it is possible ?
+# View1.CourseId = View2.CourseId
+(SELECT Teaches.CourseId, Course.Title
+            FROM Teaches, Course WHERE
+            Teaches.CourseId = Course.CourseId AND (Teaches.Year = 2010 AND
+                                    Teaches.Semester = 'Spring') AND
+                                    Teaches.CourseId IN
+            (SELECT Teaches.CourseId FROM Teaches WHERE
+            (Teaches.Year = 2009 AND Teaches.Semester = 'Fall') );
+
+
+CREATE VIEW view1 AS SELECT Teaches.CourseId, Course.Title
+            FROM Teaches, Course WHERE
+            Teaches.CourseId = Course.CourseId AND (Teaches.Year = 2010 AND
+                                    Teaches.Semester = 'Spring');
+
+CREATE VIEW view2 AS SELECT Teaches.CourseId, Course.Title
+            FROM Teaches, Course WHERE
+            Teaches.CourseId = Course.CourseId AND (Teaches.Year = 2009 AND
+                                    Teaches.Semester = 'Fall');
+
+SELECT * FROM view1;
+
+SELECT * FROM view2;
+
+SELECT view1.CourseId , view2.CourseId FROM view1, view2 WHERE view1.CourseId = view2.CourseId;
+
+SELECT view1.CourseId
+FROM view1
+INNER JOIN view2
+ON view1.CourseId = view2.CourseId;
+
+SELECT  DISTINCT Teaches.CourseId, Course.Title FROM Teaches, Course INNER JOIN Teaches T on Course.CourseId = T.CourseId
+# Find all courses taught in the Fall 2009 semester but not in the Spring 2010 semester
+
+# SELECT view2.CourseId
+FROM view2 WHERE view2.CourseId NOT IN view1.CourseId;
+
+# 3rd March 2021
+
+# Subquery
+SELECT * FROM Teaches;
+
+SELECT * FROM Course;
+
+# Subquery with SELECT statement
+SELECT * FROM Teaches WHERE CourseId IN (SELECT CourseId FROM Course WHERE Course.CourseId = 91);
+
+DESC Teaches;
+
+
+# Subquery with INSERT statement
+CREATE TABLE Temp(c1 varchar(50), CourseId varchar(50), SectionId varchar(50), Semester varchar(50), Year int);
+
+INSERT INTO Temp (SELECT * FROM Teaches WHERE CourseId IN (SELECT CourseId FROM Course WHERE Course.CourseId = 91));
+
+SELECT * FROM Temp;
+
+
+show create table Section;
+
