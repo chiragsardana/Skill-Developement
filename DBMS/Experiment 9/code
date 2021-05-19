@@ -1,0 +1,194 @@
+db;
+
+//M1 Screen Shot
+use Company;
+
+//M2
+db;
+
+//M3
+//command: to view databases list
+show dbs;
+
+//M4
+//To create a collections in a database
+db.createCollection('Employee');
+
+//M5
+db.createCollection('Department');
+
+db.createCollection('Dept_Locations');
+
+db.createCollection('Project');
+
+db.createCollection('Works_On');
+
+db.createCollection('Dependent');
+
+//M6
+//To check created collections
+show collections;
+
+
+//M7
+db.Project.insert({Pname:"ProductX",Pnumber:121,Plocation:"Texas",Dnum:6});
+
+//M8
+db.Project.insertOne({Pnumber:70, Pname:"Light",Dnum:2});
+
+//M9
+db.Project.insert([{Pname:"getRide",Pnumber:71,Plocation:"Gurugram",Dnum:1},
+    {Pname:"LOS",Pnumber:100,Plocation:"houston",Dnum:6},
+    {Pname:"PortFolio", Pnumber: 711,Plocation:"NCU",Dnum:3}]);
+
+//M10
+db.Project.insertMany([{Pname:"ProductX",Pnumber:10,Plocation:"Delhi",Dnum:7},
+    {Pname:"ProductY",Pnumber:30,Plocation:"Pune",Dnum:3}]);
+
+//M11
+db.Project.insertOne(
+    {Pname:"ProductK",Pnumber:45,Plocation:
+            {city:"Mumbai",state:"Maharashtra",country:"India"},Dnum:3});
+
+//M12
+db.Project.find();
+
+//M13
+db.Works_On.insert({Essn:"123456712",Pno:121,Hours:12.2});
+
+//M14
+db.Works_On.insertOne({Essn:"12345677",Pno:71,Hours:12.1});
+
+//M15
+db.Works_On.insert([{Essn:"123456782",Pno:71,Hours:12.1},
+    {Essn:"123456783",Pno:711,Hours:11.2},
+    {Essn:"123456784",Pno:70,Hours:24.2}]);
+
+//M16
+db.Works_On.insertMany([{Essn:"123456785",Pno:71,Hours:12.3},
+    {Essn:"123456786",Pno:71,Hours:14.0}]);
+
+//M17
+db.Works_On.find();
+
+
+//M18
+db.Employee.insert({Fname:"Chirag", Lname:"Sardana",
+Ssn:"123456782", Bdate:"2000-10-13", Address:"Sirsa", Sex:"M",
+ Salary: 10000000.12, Dno:1});
+
+//M19
+db.Employee.insertOne({Fname:"Deepanshu", Minit:" ", Lname:"Goel",
+Ssn:"123456532", Bdate:"2002-10-12", Address:"Delhi", Sex:"M",
+ Salary: 50000.00, Dno:1});
+
+//M20
+db.Employee.insertMany([{Fname:"Lovkesh", Lname:"Sardana",
+Ssn:"123456712", Bdate:"1950-10-13", Address:"Texas", Sex:"M",
+ Salary: 40000000.12, Dno:5},
+ {Fname:"John", Minit:"B", Lname:"Smith",
+Ssn:"12345677", Bdate:"1990-05-05", Address:"Delhi", Sex:"M",
+ Salary: 12000000.12, Dno:1},
+ {Fname:"Aastha", Lname:" ",
+Ssn:"12345678", Bdate:"1949-05-05", Address:"Delhi", Sex:"F",
+ Salary: 12000000.12, Dno:6}]
+ );
+
+//M21
+db.Employee.insert(
+[{Fname:"Anuj",  Minit:" ",Lname:"Sharma",
+Ssn:"123456783", Bdate:"2001-10-12", Address:"Texas", Sex:"M",
+ Salary: 40000000.12, Dno:1, Super_ssn:"123456782"},
+ {Fname:"Ayush", Lname:"Smith",
+Ssn:"123456784", Bdate:"2001-05-05", Address:"Delhi", Sex:"M",
+ Salary: 12000000.12, Dno:1},
+ {Fname:"Deepak",  Minit:" ",Lname:"Jindal",
+Ssn:"123456785", Bdate:"2000-08-26", Address:"Near DTU Delhi", Sex:"M",
+ Salary: 10000000.12, Dno:1, Super_ssn:"123456782"}]
+)
+
+//M22
+db.Employee.find();
+
+//M23
+db.Dept_Locations.insertOne({Dnumber:1,Dlocation:"Delhi"});
+
+//M24
+db.Dept_Locations.insertMany([{Dnumber:1,Dlocation:"Gurugram"}
+,{Dnumber:1,Dlocation:"Sirsa"}]);
+
+//M25
+db.Dept_Locations.find();
+
+//M26
+db.Dependent.insert({Essn:"123456782", Dependent_name:"Chirag",
+Sex:"M",Bdate: "2001-10-13",Relationship:" "});
+
+//M27
+db.Dependent.insertOne({Essn:"123456782", Dependent_name:"Deepak",
+Relationship:"Friend"});
+
+//M28
+db.Dependent.insertMany([{Essn:"123456782", Dependent_name:"Dheeraj Sardana",
+Sex:"M",Bdate: "2000-12-10",Relationship:"Brother"},
+{Essn:"123456783", Dependent_name:"Anuj Sharma"}]);
+
+//M29
+db.Dependent.find();
+
+//M30
+db.Department.insert({Dname:"CSE", Dnumber:1,Mgr_ssn:"123456789",
+Mgr_start_date:"2020-01-15"});
+//M31
+db.Department.insertOne({Dname:"ECE", Dnumber:2,Mgr_ssn:"123456780"});
+
+//M32
+db.Department.insertMany([
+{Dname:"IT", Dnumber:3,Mgr_ssn:"123456781",
+Mgr_start_date:"2020-10-14"},
+{Dname:"CSE-Full Stack", Dnumber:4,Mgr_ssn:"123456782",
+Mgr_start_date:"2021-01-12"},
+{Dname:"CSE-Cyber", Dnumber:5,Mgr_ssn:"123456784",
+Mgr_start_date:"2020-10-13"},
+{Dname:"Research", Dnumber:6,Mgr_ssn:"12345677",
+Mgr_start_date:"2020-10-13"}
+]);
+
+//M33
+db.Department.find();
+
+//M34
+//Varation of find()
+db.Department.findOne();
+
+//M35
+db.Department.find({Dnumber:1});
+//M36
+db.Department.findOne({Dnumber:3});
+
+//M37
+db.Department.find({Dnumber:10});
+//M38
+db.Department.findOne({Dnumber:10});
+
+//M39
+db.Department.find().toArray();
+//M40
+db.Department.find({Dnumber:1}).pretty()
+
+//Using and-or Together
+//M41
+db.Department.find(
+{$and:
+	[{Dnumber:3}, {$or: [{Dname:"IT"},
+	{Mgr_ssn:"123456789"}]}]});
+
+
+db.Department.find();
+//M42
+db.Department.find({},{Dname:0, Dnumber:0});
+
+//M43
+db.Department.find({},{Dname:1,Dnumber:1});
+//M44
+db.Department.find({},{Dname:1,_id:0,Dnumber:1});
