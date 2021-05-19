@@ -1,0 +1,91 @@
+//M45
+db.Department.find();
+//M46
+db.Department.updateOne({Dname:"ECE"},{$set:{Mgr_ssn:"123456782"}});
+
+//M47
+db.Department.find();
+//M48
+db.Department.updateMany({Dname:"CSE-Full Stack"},{$set:{Dname:"Full Stack"}});
+//M49
+db.Department.find();
+//M50
+db.Department.replaceOne({Dname:"CSE-Cyber"},{Dname:"Cyber"});
+
+//M51
+db.Department.find();
+//M52
+db.Department.update({Dname:"Cyber"},{$set:{Dname:"Cyber Security"}});
+//M53
+db.Department.find();
+
+//M54
+db.Department.update({Dnumber:1},{$unset:{Mgr_ssn:""}});
+//M55
+db.Department.find();
+//M56
+db.Department.find({Dname:"CSE"});
+//M57
+db.Department.insertOne(
+    {Dname:{FirstName:"CSE",Lname:"DataScience"},Dnumber:3});
+//M58
+db.Department.insertOne(
+    {Dname:["CSE1","CSE2"],Dnumber:8});
+//M59
+db.Department.find({Dname:["CSE2","CSE1"]});
+//M60
+db.Department.find({Dname:{$all:["CSE1","CSE2"]}})
+//M61
+db.Department.find({Dname:["CSE1","CSE2"]});
+
+db.Department.find();
+//M62
+db.Department.find({"Dname.FirstName":"CSE"});
+
+//M63
+db.Department.find({"Dname.Lname":"DataScience"});
+
+//M64
+db.Department.find({"Dname.FirstName":"CSE","Dname.Lname":"DataScience"});
+
+//M65
+db.Department.find({Dname:{FirstName:"CSE",Lname:"DataScience"}});
+//M66
+db.Project.insertOne({Pname:"ProductU",Pnumber:56,Plocation:["Delhi","Mumbai"],
+    Dnum:15,Department:{Dname:"Research", Dmanager:"ABC"}});
+//M67
+db.Project.insertOne({Pname:"ProductU",Pnumber:56,Plocation:["Delhi","Mumbai"],Dnum:15,
+Department:[{Dname:"Research",Dmanager:"ABC"},{Dname:"Research_New", Dmanager:"SS"}]})
+
+
+//M68
+db.Project.find();
+
+//M69
+db.Project.find({Dnum:6});
+//M70
+db.Project.findOne({Dnum:6});
+//M71
+db.Project.findOne({Dnum:6, Pname: “ProductX”});
+//M72
+db.Project.find({Dnum:6, Pname: “ProductX”},{_id:0,Plocation:0});
+
+//M73
+db.Project.find(
+{$and:
+   [{Dnum: { $lt: 20 }}, {$or: [{Pname:"ProductX"},
+   {Plocation:"Delhi"}]}]});
+
+//M74
+db.Project.updateOne({Pname:"ProductX"},{$set:{Plocation:"Pune",Dnum:20}});
+//M75
+db.Project.findOne({Pname:”ProductX”});
+//M76
+db.project.find({Plocation:["Delhi","Mumbai"]}).pretty()
+//M77
+db.Project.find({'Department.Dmanager':'ABC'}).pretty();
+
+db.Department.find();
+//M79
+db.Project.find();
+//M78
