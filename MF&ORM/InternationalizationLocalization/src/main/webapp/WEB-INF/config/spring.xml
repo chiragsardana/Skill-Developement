@@ -25,7 +25,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 <!-- Locale Change Interceptor -->
 <mvc:interceptors>
 <mvc:interceptor>
-<mvc:mapping path="/LoginSuccessfully" />
+<mvc:mapping path="/signup" />
 <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
 <property name="paramName" value="lang"></property>
 </bean>

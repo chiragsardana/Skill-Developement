@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import SBK.Model.SignupForm;
 import SBK.Model.Users;
 
 
@@ -36,7 +37,26 @@ public class WelcomeController {
 		model.addAttribute("userModel", new Users());
 		return "login";
 	}
+	@RequestMapping(path = "/signup",method = RequestMethod.GET)
+	public String signUp(Model model) {
+		model.addAttribute("signUpModel", new SignupForm());
+		return "signup";
+	}
 	
+	@RequestMapping(path = "/SignUpSuccessfully",method = RequestMethod.POST)
+	public String loginSuccessfuly(@Valid @ModelAttribute("signUpModel") SignupForm signUp ,BindingResult theBindingResult,Model model) {
+		model.addAttribute("firstName", signUp.getFirstName());
+		model.addAttribute("lastName", signUp.getLastName());
+		model.addAttribute("pwd", signUp.getPwd());
+		model.addAttribute("userId", signUp.getUserId());
+		
+		if (theBindingResult.hasErrors()) {
+			System.out.println(theBindingResult+"\n\n");
+			return "signup";
+		}
+		
+		return "Signupsuccesfully";
+	}
 	
 	@RequestMapping(path = "/LoginSuccessfully",method = RequestMethod.POST)
 	public String loginSuccessfuly(@Valid @ModelAttribute("userModel") Users user ,BindingResult theBindingResult,Model model) {
