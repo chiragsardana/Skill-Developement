@@ -22,5 +22,37 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
       <property name = "basename" value = "messages" />
 </bean>
 
+<bean id = "mailSender" class = "org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value = "smtp.gmail.com"></property>
+        <property name="port" value = "587"></property>
+        <property name = "username" value = "Enter Your Own Email Id"></property>
+        <property name="password" value = "Here Enter Ur Own Password"></property>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.debug">true</prop>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+                <prop key="mail.smtp.socketFactory.port">465</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+            </props>
+        </property>
+        </bean>
+
+<!-- Locale Change Interceptor -->
+<mvc:interceptors>
+<mvc:interceptor>
+<mvc:mapping path="/LoginSuccessfully" />
+<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+	<property name="paramName" value="lang"></property>
+</bean>
+</mvc:interceptor>
+</mvc:interceptors>
+
+<!-- Cookie Resolver -->
+<bean id="localeResolver"
+	class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+</bean>
+
 
 </beans>

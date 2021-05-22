@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import SBK.Model.Emails;
 import SBK.Model.Users;
 
 
@@ -46,7 +48,8 @@ public class WelcomeController {
 			System.out.println(theBindingResult+"\n\n");
 			return "login";
 		}
-		
+		System.out.println(user.getUserId());
+		model.addAttribute("userId",user.getUserId());
 		return "LoginSuccessfully";
 	}
 	@RequestMapping(path="/backPage", method = RequestMethod.GET)
@@ -55,4 +58,12 @@ public class WelcomeController {
 		model.addAttribute("pwd", user.getPwd());
 		return "LoginSuccessfully";
 	}
+	
+	@RequestMapping(path = "/LoginSuccessfully",method = RequestMethod.GET)
+	public String backPage(@ModelAttribute("userModel") Users user, Model model) {
+		model.addAttribute("userId", user.getUserId());
+		model.addAttribute("pwd", user.getPwd());
+		return "LoginSuccessfully";
+	}
+	
 }

@@ -17,6 +17,9 @@
   font-family: Josefin Sans, sans-serif;
   color: white;
 }
+.topright a{
+	color: white;
+}
 html {
   margin: 0;
   padding: 0;
