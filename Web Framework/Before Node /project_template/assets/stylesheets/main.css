@@ -1,0 +1,84 @@
+/* Global Settings */
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+ul{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+/* Helper Classes */
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.clear::after{
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.w-100{
+    width: 100%;
+}
+.row{
+    display: flex;
+}
+.grid{
+    display: grid;
+}
+.justify-center{
+    justify-content: center;
+}
+.justify-around{
+    justify-content: space-around;
+}
+.justify-between{
+    justify-content: space-betweens;
+}
+.align-center{
+    align-items: center;
+}
+
+/* Generic Page Level Settinga */
+
+/* Container */
+#container{
+
+}
+/* Header */
+#header{
+
+}
+/* Banner */
+#banner{
+
+}
+/* Main Navigation */
+#main-nav{
+
+}
+/* Footer */
+#footer{
+
+}
+
+/* Sidebar */
+#sidebar{
+    
+}
+
+/* Specific CSS */
+
+/* Page_1 */
+
+
+/* Page_2 */

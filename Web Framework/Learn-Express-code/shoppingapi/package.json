@@ -1,0 +1,19 @@
+{
+  "name": "shoppingapi",
+  "version": "1.0.0",
+  "description": "this is a app for shopping api",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "keywords": [
+    "shopping"
+  ],
+  "author": "SBK",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.15"
+  }
+}
