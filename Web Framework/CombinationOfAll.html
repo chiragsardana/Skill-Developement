@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combination of All</title>
+    <script>
+        function combination(str){
+            var buff = [];
+            var res = [];
+            for (i=0;i<str.length;i++){
+                buff = [str[i]];
+                var index=0;
+                while(res[index]){
+                    buff.push(''+res[index]+str[i]);
+                    index++;
+                }
+                res = res.concat(buff);
+            }
+
+            return res;
+        }
+        document.write(combination("dog"));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

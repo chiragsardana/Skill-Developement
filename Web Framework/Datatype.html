@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datatype</title>
+    <script>
+
+        function dataType(value){
+            var dtypes = [Function, Number, String, Boolean, Object, undefined];
+            if (typeof value === "object" || typeof value === "function") {
+                for (x = 0, len = dtypes.length; x < len; x++) {
+                    if (value instanceof dtypes[x])
+                    {
+                        return dtypes[x];
+                    }
+                }
+            }
+            return typeof value;
+        }
+        document.write(dataType(#));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

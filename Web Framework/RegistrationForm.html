@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .table{
+            height: 100%;
+            width: 75%;
+            border: 1px solid black;
+        }
+        #messageBox{
+            height: 90px;
+            width: 250px;
+        }
+        #leftSpace{
+            padding-left: 10px;
+            padding-bottom: 10px;
+        }
+        aside{
+            width: 24%;
+            margin-left: 76%;
+            margin-top: -32%;
+        }
+        h5{
+            font-size: large;
+            margin-bottom: 0.29cm;
+        }
+        nav{
+            margin-left: 70%;
+        }
+    </style>
+    <title>Registration Form</title>
+</head>
+<body>
+    <header>
+        <h1>
+            Form Elements
+        </h1>
+    </header>
+    <nav>
+        <a href="https://sardana-boy-kanu.web.app">Portfolio</a>
+    </nav>
+    <main>
+
+    <table class="table">
+        <form action="" autocomplete="on" > 
+            <th>
+                Registration Form
+            </th>
+            <tr>
+                <td id="leftSpace">
+                    Enter Name:
+                </td>
+                <td>
+                    <input type="text" name="name" required="required" placeholder="Name">
+                </td>
+            </tr>
+            <tr>
+                <td id="leftSpace">
+                    Enter Password:
+                </td>
+                <td>
+                    <input type="password" name="password" required="required" autocomplete="off" placeholder="Password">
+                </td>
+                
+            </tr>
+            <tr>
+                <td id="leftSpace">
+                    Enter Email:
+                </td>
+                <td>
+                    <input type="email" name="email" required="required" autocomplete="off" placeholder="Email">
+                </td>
+                 
+            </tr>
+            <tr>
+                <td id="leftSpace">
+                    Enter Age:
+                </td>
+                <td>
+                    <input type="number" name="age" min="18" max="71" placeholder="Age">
+                </td>
+            </tr>
+            <tr>
+                <td id="leftSpace">
+                    Enter Phone No.
+                </td>
+                <td>
+                    <input type="text" name="phoneNo" title="Only digits are allowed, lenght will be 10" pattern="[0-9]{10}" placeholder="Enter Phone Number">
+                </td>
+            </tr>
+            <tr>
+                <td id="leftSpace">
+                    Select Country:
+                </td>
+                <td>
+                    <input type="text" name="country" placeholder="Country">
+                </td>
+            </tr>
+            <tr>
+                <td id="leftSpace">
+                    Choose Color:
+                </td>
+                <td>
+                    <input type="color" name="color" placeholder="Color">
+                </td>
+            </tr>
+            <tr>
+                <td id="leftSpace">
+                    Enter DOB:
+                </td>
+                <td>
+                    <input type="date" name="date" placeholder="Date">
+                </td>
+                <td>
+                    <input type="time" name="date" placeholder="Time">
+                </td>
+                <td>
+                    <input type="datetime-local" name="date" placeholder="Date Time">
+                </td>
+            </tr>
+            <tr>
+                <td id="leftSpace">
+                    Select Range
+                </td>
+                <td>
+                    <input type="range" name="range" value="2000" min="1000" max="5000" onchange="output.value = value" step="100">
+                </td>
+                <td>
+                    <output id="output">
+                        2000
+                    </output>
+                </td>
+            </tr>
+            <tr>
+                <td  id="leftSpace">
+                    Enter your message
+                </td>
+                <td>
+                    <input type="text" name="name" required="required" placeholder="Message" id="messageBox">
+                </td>
+            </tr>
+            <tr>
+                <td  id="leftSpace">
+                    <button>
+                        Reset
+                    </button>
+                </td>
+                <td>
+                    <input type="submit">
+                </td>
+            </tr>
+        </form>
+    </table>
+    <aside>
+        <h4>Form Details</h4>
+        <p>Its an Registration Form for Participating in the Quiz based on Spring MVC which is going to held on 20th August 2021</p>
+        <h5>For More Details Listen to Audio File</h5>
+        <audio controls controlslist="nodownload">
+            <source src="audio/Wait   Karan Randhawa (Official Song) Jass Manak ¦ Satti Dhillon ¦ GC ¦  GK.DIGITAL ¦ Geet MP3.mp3"></source>
+        </audio>
+        <h5>For More Details See Video File</h5>
+        <video controls width="90%" height="150px" poster="Images/NCU.jpeg">
+            <source src="video/Pexels Videos 2616637.mp4">
+        </video>
+    </aside>
+
+    </main>
+    <br>
+    <footer>
+        Footer
+    </footer>
+</body>
+</html>

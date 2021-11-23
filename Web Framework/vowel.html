@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vowel</title>
+    <script>
+        function vowel(str){
+            
+            str = str.split("");
+            count = 0;
+            for(var x = 0; x < str.length; x++){
+                if(str[x] == a || str[x] == e || str[x] == i || str[x] == o || str[x] == u){
+                    count += 1;
+                }
+            }
+            return count;
+        }
+        
+        document.write("The Answer is: "+vowel("The quick brown fox"));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse A Number</title>
+
+    <script>
+        //  The split() method is used to split a String object into an array of strings by separating the string into substrings.
+
+        //  The reverse() method is used to reverse an array in place. The first array element becomes the last and the last becomes the first.
+
+        //  The join() method is used to join all elements of an array into a string.
+     
+        function reverse_a_number(n){
+            n = n + "";
+            return n.split("").reverse().join("");
+        }
+        document.write(Number(reverse_a_number(32243)));
+    </script>
+</head>
+<body>
+
+</body>
+</html>
