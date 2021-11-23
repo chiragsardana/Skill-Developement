@@ -1,0 +1,127 @@
+    main {
+        background-color: rgb(240, 240, 240);
+    }
+    
+    .container1 {
+        background-color: white;
+        margin-bottom: 2vh;
+        margin-left: -4vw;
+        margin-right: 4vw;
+        height: 25vw;
+        margin-top: 1vw;
+        width: 100vw;
+        overflow: hidden;
+        border: 1px solid rgb(207, 205, 205);
+    }
+    
+    .imgslider0 {
+        display: flex;
+        flex-direction: row;
+        margin-top: 0.5vw;
+        margin-left: 0.3vw;
+        overflow: hidden;
+    }
+    
+    #imgslid0 {
+        width: 100vw;
+        height: 29.4vw;
+    }
+    
+    #imgslid1 {
+        width: 100vw;
+        height: 29vw;
+    }
+    
+    #imgslid2 {
+        width: 100vw;
+        height: 24.5vw;
+        position: relative;
+        right: 1vw;
+    }
+    
+    #imgslid3 {
+        width: 100vw;
+        height: 24.6vw;
+    }
+    
+    .radio00 {
+        position: sticky;
+        /* left: 10vw; */
+        margin-top: 20vw;
+        visibility: collapse;
+    }
+    
+    .dots {
+        display: inline-flex;
+        position: sticky;
+        bottom: 10px;
+        margin-left: 48vw;
+        /* margin-top: 6vw; */
+    }
+    
+    .dots label {
+        height: 1vw;
+        width: 1vw;
+        border-radius: 50%;
+        border: 0.2vw solid black;
+        background-color: white;
+        margin: 0.3vw;
+        cursor: pointer;
+    }
+    
+    .dots label:hover {
+        background-color: black;
+        transition: 0.05s ease;
+    }
+    
+    #img1:checked~#imgslid0 {
+        animation: slider0 .1s ease 0s 1 normal;
+    }
+    
+    @keyframes slider0 {
+        from {
+            margin-right: -1vw;
+        }
+        to {
+            margin-right: -1vw;
+        }
+    }
+    
+    #img2:checked~#imgslid1 {
+        animation: slider1 .1s ease 0s 1 normal forwards;
+    }
+    
+    @keyframes slider1 {
+        from {
+            margin-left: 0;
+        }
+        to {
+            margin-left: -99vw;
+        }
+    }
+    
+    #img3:checked~#imgslid2 {
+        animation: slider2 .1s ease 0s 1 normal forwards;
+    }
+    
+    @keyframes slider2 {
+        from {
+            margin-left: 0;
+        }
+        to {
+            margin-left: -198vw;
+        }
+    }
+    
+    #img4:checked~#imgslid3 {
+        animation: slider3 .1s ease 0s 1 normal forwards;
+    }
+    
+    @keyframes slider3 {
+        from {
+            margin-left: 0;
+        }
+        to {
+            margin-left: -297vw;
+        }
+    }

@@ -1,0 +1,152 @@
+.page-container{
+    background-color: orangered;
+    width: 760px;
+    height: 870px;
+}
+
+.title{
+    color: black;
+    text-align: center;
+    padding-top: 30px;
+    padding-left: 200px;
+    font-size: xx-large;
+    font-style: normal;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+.header{
+    height: 263px;
+    background-image: url("../Images/NCU.jpeg");
+    background-size: 100% 100%;
+    width: 700px;
+    size: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+.content{
+    background-color: black;
+    height: 400px;
+    margin-left: 30px;
+    margin-top: -14px;
+    margin-right: 30px;
+}
+.content h1{
+    color: white;
+    margin-left: 240px;
+    padding-top: 5px;
+    font-size: large;
+}
+
+.content h1 a{
+    color: white;
+    /* padding: 5px; */
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.content h2{
+    color: white;
+    margin-left: 240px;
+    font-size: small;
+}
+.content h2 a{
+    color: white;
+    /* padding: 5px; */
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.content p{
+    color: white;
+    margin-left: 240px;
+}
+.contentImage{
+    margin-left: 270px;
+    height: 100px;
+    width: 450px;
+    margin-top: -40px;
+    color: brown;
+    background-image: url("../Images/asq.png");
+    background-size: 100% 100%;
+}
+.contentMore{
+    background-color: black;
+    margin-top: 20px;
+    margin-left: 270px;
+    height: 120px;
+    width: 450px;
+}
+.contentMore p{
+    color: white;
+}
+.contentMore a{
+    color: white;
+}
+.littlebox{
+    background-image: url("../Images/SBK.jpeg");
+    background-size: 100% 100%;
+    height: 180px;
+    width: 220px;
+    margin-left: 35px;
+    margin-top: -390px;
+    background-position: center;
+}
+.login{
+    background-color:rgb(31, 30, 32);
+    height: 180px;
+    width: 170px;
+    margin-top: 5px;
+    margin-left: 35px;
+    margin-top: -200px;
+    margin-bottom: 10px;
+    text-align: initial;
+}
+.login h1{
+    text-align: left;
+    color: white;
+    font-size: large;
+    margin-left: 10px;
+}
+.login label{
+    margin-left: 10px;
+    color: rgb(255, 255, 255);
+}
+.login input[type=text]{
+    margin-left: 10px;
+    width: 80%;
+}
+.login input[type=password]{
+    margin-left: 10px;
+    width: 80%;
+}
+.login input[type=submit]{
+    margin-left: 10px;
+    /* width: 80%; */
+}
+.footer{
+    background-color: aliceblue;
+    height: 100px;
+    margin-left: 30px;
+    margin-right: 30px;
+    color: black;
+}
+.imageFooter{
+    background-image: url("../Images/socialx25.jpeg");
+    background-size: 100% 100%;
+    background-color: cyan;
+    width: 220px;
+    height: 90px;
+}
+.imageFooterEnd{
+    background-image: url("../Images/socialx25.jpeg");
+    background-size: 100% 100%;
+    background-color: cyan;
+    width: 150px;
+    height: 90px;
+}
+.contentFooter{
+    width: 320px;
+}
+
+.contentFooter a{
+    width: 320px;
+    padding-left: 100px;
+    color: black;
+}

@@ -1,0 +1,33 @@
+.contentdesc {
+    display: flex;
+    justify-content: center;
+    text-transform: capitalize;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container0 {
+    background-color: white;
+    margin-bottom: 2vh;
+}
+
+.content01 {
+    /* background-color: red; */
+    cursor: pointer;
+}
+
+/* .content01:hover {
+    color: var(--main-bg-color);
+} */
+
+.container0 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    padding-bottom: 1vw;
+    margin-left: -0.5vw;
+}
+.contentimg0{
+    height: 15vh;
+    width: 10vw;
+}

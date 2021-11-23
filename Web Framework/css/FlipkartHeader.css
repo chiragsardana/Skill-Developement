@@ -1,0 +1,87 @@
+body{
+  margin: 0px;
+  font-family: "Roboto", sans-serif;
+}
+
+
+ul {
+  margin: 0px;
+  padding: 0px;
+    list-style: none;
+  }
+  a {
+    text-decoration: none;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 0px;
+  }
+  .left {
+    float: left;
+  }
+  .right {
+    float: right;
+  }
+  .row:after {
+    content: "";
+    clear: both;
+    display: block;
+  }
+  .w-100 {
+    /* take the complete width*/
+    width: 100%;
+  }
+  .container {
+    width: 900px;
+    margin: 0 auto; /*the browser calculates the
+      margin*/
+  }
+  #header {
+    background-color: #2874f0;
+    padding: 8px 0px;
+  }
+  #header a {
+    color: #fff;
+  }
+  #header .logo {
+    width: 100px;
+  }
+  #header .logo .explore {
+    font-size: 12px;
+    position: relative;
+    font-style: italic;
+    display: block;
+  }
+  #header .logo .explore span {
+    color: #ffe500;
+  }
+  #header .search {
+    width: 50%;
+    margin-left: 20px;
+    position: relative;
+  }
+  #header .search input[type="text"] {
+    width: 100%;
+    padding: 0px 5px;
+    height: 30px;
+  }
+  #header .search button {
+    position: absolute;
+    right: 0px;
+    border: none;
+    background-color: transparent;
+    top: 10px;
+  }
+  #header .userSection {
+    width: 32%;
+    margin-left: 20px;
+    padding-top: 8px;
+  }
+  #header .userSection ul li {
+    display: inline-block;
+    margin: 0px 10px;
+  }

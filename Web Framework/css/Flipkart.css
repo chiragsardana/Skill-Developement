@@ -1,0 +1,27 @@
+header{
+    background-color: blue;
+    height: 50px;
+}
+#flipkartLogo{
+    height: 30px;
+    margin-left: 10%;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-right: 10%;
+}
+#searchBox{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 30px;
+    width: 500px; 
+}
+#iconAllignment{
+    color: grey;
+    height: 30px;
+    background-color: white;
+    font-size: xx-large;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-left: -5px;
+    /* margin-left: -5px; */
+}

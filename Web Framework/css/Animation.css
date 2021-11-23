@@ -1,0 +1,48 @@
+/* img{
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    left: 45%;
+    bottom: 0px;
+    border-radius: 50%;
+    animation-name: anim_1;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+@keyframes anim_1{
+    0%{
+        bottom: 0px;
+        left: 45%;
+    }
+    25%{
+        bottom: 45%;
+        left: 0px;
+        transform: rotate(360deg);
+    }
+    50%{
+        bottom: 80%;
+        left: 45%;
+    }
+    75%{
+        bottom: 45%;
+        left: 90%;
+    }
+    100%{
+        bottom: 0px;
+        left: 45%;
+    }
+} */
+
+img{
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    left: 45%;
+    
+    border-radius: 50%;
+    animation-name: anim_2;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}

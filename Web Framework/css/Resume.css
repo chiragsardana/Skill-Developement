@@ -1,0 +1,172 @@
+.resumeData{
+    margin-left: auto;
+    margin-right: auto;
+    width: 1,122px;
+    height: 200px;
+}
+
+.resumeData td{
+    width: 374px;
+}
+.resumeData h1{
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+}
+.resumeData h3{
+    color: grey;
+    margin-top: -5%;
+}
+.resumeData p{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.resumeData td img{
+    border-radius: 50%;
+    margin-left: 15%;
+    margin-right: auto;
+    width: 50%;
+}
+#links{
+    font-size: small;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#link{
+    /* margin-top: 20px; */
+    color: black;
+}
+
+#section2PartA{
+    width: auto;
+}
+.resumeData1{
+    margin-left: auto;
+    margin-right: auto;
+    width: 1,122px;
+    height: 593px;
+}
+.resumeData1 td{
+    width: 561px;
+}
+#Education{
+    border-top-style: solid;
+    border-bottom-style: solid;
+    width: 35%;
+    border-bottom-width: 2px;
+    border-top-width: 2px;
+    text-transform: uppercase;
+}
+#TechnicalSkills{
+    border-top-style: solid;
+    border-bottom-style: solid;
+    width: 57%;
+    border-bottom-width: 2px;
+    border-top-width: 2px;
+    text-transform: uppercase;
+}
+
+#Internship{
+    border-top-style: solid;
+    border-bottom-style: solid;
+    width: 36%;
+    border-bottom-width: 2px;
+    border-top-width: 2px;
+    text-transform: uppercase;
+    /* margin-top: -15%; */
+}
+#Projects{
+    border-top-style: solid;
+    border-bottom-style: solid;
+    width: 30%;
+    border-bottom-width: 2px;
+    border-top-width: 2px;
+    text-transform: uppercase;
+}
+#certifications{
+    border-top-style: solid;
+    border-bottom-style: solid;
+    width: 49%;
+    border-bottom-width: 2px;
+    border-top-width: 2px;
+    text-transform: uppercase;
+}
+#ProgrammingLanguage{
+    border-top-style: solid;
+    border-bottom-style: solid;
+    width: 81%;
+    border-bottom-width: 2px;
+    border-top-width: 2px;
+    text-transform: uppercase;
+    margin: 0%;
+}
+#Degree{
+    width: 461px;
+}
+#DegreeWhere{
+    font-size: x-large;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: -16px;
+    color: rgb(39, 38, 38);
+}
+#DegreeDetails{
+    color: grey;
+    margin-top: -16px;
+}
+
+#Degree1{
+    margin-top: 7%;
+    width: 461px;
+}
+#DegreeWhere1{
+    font-size: x-large;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: -16px;
+    margin-right: 20%;
+    color: rgb(39, 38, 38);
+}
+#DegreeDetails1{
+    color: hsla(0, 3%, 73%, 0.822);
+    margin-top: -16px;
+}
+#textDesign{
+    background-color: grey;
+    border-radius: 5px 5px 5px 5px;
+    color: white;
+    font-size: large;
+    margin: 10px;
+    padding: 1.5%;
+    padding-left: 2%;
+}
+#intershipList{
+    font-size: larger;
+    margin: 1%;
+}
+#internshipDetails{
+    color: grey;
+    width: 90%;
+    margin-top: -.25px;
+}
+#companyName{
+    font-size: larger;
+    margin-top: -3%;
+    margin-bottom: 1%;
+}
+#programming{
+    font-size: x-large;
+    margin-bottom: 0%;
+    font-family: 'Times New Roman', Times, serif;
+}
+#skills{
+    font-family: 'Times New Roman', Times, serif;
+}
+#certificationText{
+    width: 85%;
+    font-size: x-large;
+}
+#projectTitle{
+    color: black;
+    font-size: x-large;
+    font-family: 'Times New Roman', Times, serif;
+    margin-bottom: -12px;
+}
+#projectDetails{
+    font-size: large;
+}

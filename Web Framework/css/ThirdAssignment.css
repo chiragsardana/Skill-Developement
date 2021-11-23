@@ -1,0 +1,81 @@
+/* CSS Document */
+
+#page-container {
+	width: 760px;
+	margin: auto;
+	background-color: red;
+    height: 600px;
+}
+html, body {
+	margin: 0;
+	padding: 0;
+
+}
+
+#main-nav { 
+        background: red; 
+        height: 30px; 
+        text-align: center;
+    } 
+
+#header { 
+    background: blue; 
+    height: 263px; 
+    margin-left: 20px; 
+    margin-right: 20px; 
+    background-image: url("../Images/NCU.jpeg");
+    background-size: cover;
+    background-position: center;
+} 
+
+#HEaderDesign{
+    margin-top: 20px;
+}
+
+
+#sidebar-a { background: darkgreen; height: 200px;float: right;width: 500px;margin-right: 20px;} 
+
+#content { background: green;height: 200px;margin-right: 280px;margin-left: 20px; } 
+
+#footer { clear: both; background: orange; height: 80px;margin-left: 20px; margin-right: 20px;margin-bottom: 30px; } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+/* CLass Selector
+.tableDesign{
+    background-color:white;
+    width: 1000;
+}
+/* id Selector */
+#imageDesign{
+    width: 35cm;
+    height: 5cm;
+}
+.divisionDesign{
+    background-color: red;
+    width: 35cm;
+    height: 1cm;
+} */ */

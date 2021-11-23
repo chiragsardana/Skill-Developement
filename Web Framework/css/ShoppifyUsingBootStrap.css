@@ -1,0 +1,102 @@
+.nav-item{
+    margin-left: 65px;
+}
+.card-title{
+    margin-left: 45%;
+}
+.img{
+    /* width: ; */
+    margin-left: 44%;
+    height: 50px;
+}
+.left-search-box{
+    background-color: rgba(218, 211, 211, 0.76);
+    margin-left: 2%;
+    margin-top: 2%;
+    width: 20%;
+    height: 100%;
+}
+.form-outline{
+    width: 170px;
+    margin-left: 10%;
+}
+hr { 
+    /* Dotted red border */
+    /* border: 1px solid red; */
+    width: 210px;
+    height: 2px;
+    background-color: red;
+}
+.checked {
+    color: orange;
+}
+.main-data-container{
+    background-color:white;
+    margin-left: 25%;
+    margin-right: 2%;
+    margin-top: -61.5%;
+    /* height: 100%; */
+}
+.nuts{
+    /* margin-top: 50px; */
+    /* padding-top: 10px; */
+    background-color:white;
+    margin-left: 44%;
+    padding-bottom: 20px;
+    font-size: xx-large;
+}
+.list-group{
+    border: none;
+}
+.list-group-horizontal{
+    border: none;
+}
+.list-group-item{
+    border: none;
+}
+.card{
+    border: none;
+}
+.card-img-top{
+    /* border-radius: 50%; */
+    /* border-top-left-radius: 100%;
+    border-top-right-radius: 50%; */
+    /* height: 100%; */
+    /* margin: 5%; */
+    /* border-bottom: 50%; */
+}
+.leftMargin{
+    margin-left: 25px;
+    padding: 5px;
+    font-size: x-large;
+}
+.form-check{
+    margin-left: 25px;
+}
+.stars{
+    margin-left: 25px;
+}
+header{
+    height: 90px;
+}
+.logoText{
+    margin-left: 20px;
+    font-size: 50px;
+    margin-bottom: -15px;
+    margin-top: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.img-fluid{
+    margin-left: 26%;
+    margin-top: -50px;
+    height: 15px;
+    width: 90px;
+    margin-bottom: 0px;
+}
+.header
+    margin-top: -0px;
+}
+/* .cartSSS{
+    margin-left: 1000px;
+} */
+/* rgb(252, 241, 241); */

@@ -1,0 +1,16 @@
+/* Element Selector */
+h2{
+    color: grey;
+    background-color: violet;
+}
+/* CLass Selector */
+.SBK{
+    color: lawngreen;
+}
+/* ID Selector */
+#SBK_ID{
+    color: rgb(109, 114, 103);
+}
+h5{
+    color: red;
+}

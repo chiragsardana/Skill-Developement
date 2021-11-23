@@ -1,0 +1,134 @@
+:root {
+    --footer-bg-color: #182434;
+}
+
+footer {
+    position: absolute;
+    z-index: 1;
+    width: 100vw;
+    margin-top: 1vw;
+    background-color: var(--footer-bg-color);
+    height: 26.5vw;
+}
+
+.leftcontent {
+    display: flex;
+    flex-direction: row;
+    gap: 4vw;
+}
+
+.heading_foot {
+    list-style: none;
+    color: rgb(150, 146, 146);
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
+}
+
+.itemoffoot {
+    list-style: none;
+}
+
+.itemfootlink {
+    text-decoration: none;
+    color: white;
+}
+
+#telephone0 {
+    text-decoration: none;
+    color: var(--main-bg-color);
+}
+
+.contentfootmain {
+    margin-left: 4vw;
+    margin-top: 3vw;
+    display: flex;
+    flex-direction: column;
+    gap: 3vw;
+    text-transform: capitalize;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9vw;
+}
+
+.heading_foot {
+    margin-bottom: 1vw;
+}
+
+.itemoffoot {
+    margin-bottom: 1vw;
+}
+
+.contentfoottop {
+    display: flex;
+    flex-direction: row;
+    gap: 7vw;
+}
+
+.rightcontent {
+    display: flex;
+    flex-direction: row;
+    gap: 2.6vw;
+}
+
+.mail {
+    padding-left: 2vw;
+    border-left: 1px solid rgb(134, 134, 134);
+    /* background-color: red; */
+    height: 11vw;
+}
+
+.itemoffoot1 {
+    text-decoration: none;
+    list-style: none;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9vw;
+    margin-bottom: 0.4vw;
+}
+
+.bottomcontent {
+    margin-bottom: auto;
+    margin-top: auto;
+    font-size: 1vw;
+}
+
+.bottom_foot {
+    display: flex;
+    flex-direction: row;
+    gap: 4.5vw;
+    /* margin-top: -1vw; */
+}
+
+.botcontent {
+    list-style: none;
+    color: white;
+}
+
+.botcontlink {
+    text-decoration: none;
+    color: white;
+}
+
+.botcontentimg {
+    list-style: none;
+    margin-bottom: 1vw;
+}
+
+#hrbottom {
+    margin-left: -4vw;
+    width: 100vw;
+    background-color: black;
+}
+
+.footimg0 {
+    height: 1.5vw;
+    width: 1.5vw;
+    position: relative;
+    margin-top: -1vw;
+    right: 0.5vw;
+    top: 0.1vw;
+}
+
+#imggroup0 {
+    width: 28vw;
+    height: 2vw;
+}
