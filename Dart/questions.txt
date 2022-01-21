@@ -1,0 +1,15 @@
+1. Enter a String
+input : heLLo HOW aRE yOU
+output : Hello How Are You
+
+2. input : Hello How are You
+Output : Word Count  = 4
+
+3. Palindrome String 
+input : nitin
+output: Palindrome String
+
+
+
+
+note: Input Either Command line Arguments or Either Use stdin
