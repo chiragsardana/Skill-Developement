@@ -46,3 +46,17 @@ private static String infixToPostfix(String Expression)
 
 		return result;
 	}
+private static int precedence(char ch) {
+    switch (ch) {
+        case '+':
+        case '-':
+            return 1; // Lowest precedence for addition and subtraction
+        case '*':
+        case '/':
+            return 2; // Higher precedence for multiplication and division
+        case '^':
+            return 3; // Highest precedence for exponentiation
+        default:
+            return -1; // For non-operator characters
+    }
+}
